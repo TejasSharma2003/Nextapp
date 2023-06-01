@@ -1,0 +1,32 @@
+.item {
+  width: 30px;
+  height: 30px;
+  position: relative;
+}
+
+.item:before,
+.item:after {
+  content: "";
+  position: absolute;
+  width: 80%;
+  height: 2px;
+  background-color: #fff;
+  transition: 0.3s ease-out;
+  left: 50%;
+  top: 50%;
+}
+
+.item:after {
+  transform: translate(-50%, -50%) rotate(45deg);
+}
+
+.item:before {
+  transform: translate(-50%, -50%) rotate(-45deg);
+}
+
+.item:hover:before,
+.item:focus:before,
+.item:hover:after,
+.item:focus:after {
+  transform: translate(-50%, -50%) rotate(180deg);
+}

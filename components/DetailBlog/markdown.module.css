@@ -1,0 +1,28 @@
+.reactMarkDown h1 {
+  font-size: 3rem;
+  font-weight: 600;
+  margin: 0.7rem 0;
+}
+
+.reactMarkDown h2 {
+  font-size: 2.5rem;
+  font-weight: 600;
+  margin: 1rem 0;
+}
+
+.reactMarkDown h3 {
+  font-size: 2rem;
+  font-weight: 600;
+  margin: 1rem 0;
+}
+
+.reactMarkDown p {
+  font-size: 2rem;
+  color: rgba(255 255 255 /0.8);
+  margin-bottom: 2rem;
+}
+
+.reactMarkDown li {
+  font-size: 1.5rem;
+  list-style: circle;
+}
