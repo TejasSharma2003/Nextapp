@@ -1,26 +1,10 @@
-import React from "react";
-import * as styles from "./navLinks.module.css";
+import React from 'react';
+import * as styles from './navLinks.module.css';
 
-import { motion } from "framer-motion";
+import { motion } from 'framer-motion';
 
-const links = [
-  {
-    directTo: "#about",
-    text: "About",
-  },
-  {
-    directTo: "#footer",
-    text: "Contact",
-  },
-  {
-    directTo: "#portfolio",
-    text: "Portfolio",
-  },
-  {
-    directTo: "#services",
-    text: "Services",
-  },
-];
+import Link from 'next/link';
+import { navLinks as links } from '../../Navbar/navlinks';
 
 const linksContainerVariants = {
   show: { transition: { staggerChildren: 0.2 } },
@@ -70,9 +54,9 @@ const NavLinks = props => {
               key={idx}
               className={`font-play-fair block tracking-wider`}
             >
-              <a href={link.directTo} className={`${styles.link}`}>
-                {link.text}
-              </a>
+              <Link href={link.path} className={`${styles.link}`}>
+                {link.name}
+              </Link>
             </motion.li>
           );
         })}

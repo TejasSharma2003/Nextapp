@@ -34,7 +34,7 @@ const handler = async (req, res) => {
     //Handler mongodb dublicate document error
     let error;
     if (err.code === 11000) {
-      error = new AppError("Email already exits", 409);
+      error = new AppError("Provided email address already exits.", 409);
     } else {
       error = new AppError();
     }

@@ -1,14 +1,10 @@
-import About from "@/components/About";
+import About from '@/components/About';
 
-import PageTransition from "@/ui/PageTransition";
-import { forwardRef } from "react";
 
-const AboutPage = (props, ref) => {
-  return (
-    <PageTransition ref={ref} props={props}>
-      <About />
-    </PageTransition>
-  );
+const AboutPage = props => {
+  console.log(props);
+  return <About />;
 };
 
-export default forwardRef(AboutPage);
+export default AboutPage;
+

@@ -1,7 +1,7 @@
-import { useState, useRef, useEffect } from "react";
-import Link from "next/link";
+import { useState, useRef, useEffect } from 'react';
+import Link from 'next/link';
 
-import { IoIosArrowForward } from "react-icons/io";
+import { IoIosArrowForward } from 'react-icons/io';
 
 const Topics = ({ tags, className }) => {
   const [showRightArrow, setShowRightArrow] = useState(false);
@@ -13,7 +13,7 @@ const Topics = ({ tags, className }) => {
     if (tagsWrapperRef?.current) {
       tagsWrapperRef.current.scrollBy({
         left: 100,
-        behavior: "smooth",
+        behavior: 'smooth',
       });
     }
   };
@@ -25,13 +25,13 @@ const Topics = ({ tags, className }) => {
     if (tagsWrapperRef?.current) {
       tagsWrapperRef.current.scrollBy({
         left: -100,
-        behavior: "smooth",
+        behavior: 'smooth',
       });
     }
   };
 
   return (
-    <div className={`relative ml-10 flex items-center ${className || ""}`}>
+    <div className={`relative ml-10 flex items-center ${className || ''}`}>
       {showRightArrow && (
         <span className="bg-white-gradient-l-r absolute bottom-0 left-0 top-2/4 block h-[90%] -translate-y-2/4 rounded-r-full bg-gradient-to-l from-black-100/[.9] to-black-300 pr-[20px] ">
           <IoIosArrowForward
@@ -44,7 +44,7 @@ const Topics = ({ tags, className }) => {
         <div className="flex items-center text-white-100">
           {tags.map((tag, idx) => {
             return (
-              <Link href={`/tags/${tag.attributes.tagName}`}>
+              <Link href={`/tags/${tag.attributes.tagName}`} key={idx}>
                 <span
                   key={idx}
                   className="custom-item ml-5 inline-block cursor-pointer whitespace-nowrap rounded-full bg-black-100 px-5 py-4 text-2xl text-white-100  transition-colors hover:bg-white-100 hover:text-black-100 "

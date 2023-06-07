@@ -34,7 +34,7 @@ const Input = props => {
       tabIndex="0"
       className={`${
         props.wrapperClassName || ""
-      } rounded-fulltransition-colors relative mb-10 flex items-center `}
+    } rounded-fulltransition-colors relative mb-7 flex items-center `}
     >
       {props?.icon && (
         <span className="absolute left-5 z-30 inline-block h-9 w-9 text-white-100">

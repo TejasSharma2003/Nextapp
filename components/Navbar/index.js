@@ -1,33 +1,33 @@
-import { useEffect, useState } from "react";
-import { createPortal } from "react-dom";
-import * as classes from "./navbar.module.css";
-import { useRouter } from "next/router";
+import { useEffect, useState } from 'react';
+import { createPortal } from 'react-dom';
+import * as classes from './navbar.module.css';
+import { useRouter } from 'next/router';
 
-import Auth from "../Auth";
+import Auth from '../Auth';
 
-import { signOut, useSession } from "next-auth/react";
+import { signOut, useSession } from 'next-auth/react';
 
-import Container from "@/ui/Container";
-import WriteIcon from "@/ui/WriteIcon";
+import Container from '@/ui/Container';
+import WriteIcon from '@/ui/WriteIcon';
 
-import { IoIosArrowDown } from "react-icons/io";
+import { IoIosArrowDown } from 'react-icons/io';
 
-import Avatar from "../Avatar";
-import Logo from "../Logo";
-import Button from "@/elements/Button";
+import Avatar from '../Avatar';
+import Logo from '../Logo';
+import Button from '@/elements/Button';
 
-import Link from "next/link";
-import { navLinks } from "./navlinks";
+import Link from 'next/link';
+import { navLinks } from './navlinks';
 
-import Settings from "./Settings";
-import { motion, AnimatePresence, easeInOut } from "framer-motion";
-import showAlert from "../AlertContainer";
-import MobileNav from "../MobileNav";
+import Dropdown from './Dropdown';
+import { motion, AnimatePresence, easeInOut } from 'framer-motion';
+import showAlert from '../AlertContainer';
+import MobileNav from '../MobileNav';
 
 const Navbar = () => {
   const [modelIsVisible, setModelIsVisile] = useState(false);
-  const [showSettings, setShowSettings] = useState(false);
-  const [modelFor, setModelFor] = useState("");
+  const [showDropdown, setShowDropdown] = useState(false);
+  const [modelFor, setModelFor] = useState('');
   const [isNavbarVisible, setIsNavbarVisible] = useState(true);
   const [preScrollPosition, setPreScrollPosition] = useState(0);
 
@@ -37,14 +37,14 @@ const Navbar = () => {
   const pagePath = router.asPath;
 
   const resetShowSetting = () => {
-    setShowSettings(false);
+    setShowDropdown(false);
   };
 
   const onSignoutHandler = async () => {
     await signOut({ redirect: false });
     showAlert({
-      status: "pending",
-      message: "Hold on we are working...",
+      status: 'pending',
+      message: 'Hold on we are working...',
     });
     resetShowSetting();
   };
@@ -66,9 +66,9 @@ const Navbar = () => {
       setPreScrollPosition(currentPosition);
     };
 
-    window.addEventListener("scroll", handleScroll);
+    window.addEventListener('scroll', handleScroll);
 
-    return () => window.removeEventListener("scroll", handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
   }, [preScrollPosition]);
 
   return (
@@ -83,8 +83,8 @@ const Navbar = () => {
         )}
       </AnimatePresence>
       <div
-        className={`fixed top-0 z-10 w-full px-5 backdrop-blur transition-transform ${
-          !isNavbarVisible ? "-translate-y-full" : ""
+        className={`sticky top-0 z-50 w-full  animate-fadeIn backdrop-blur transition-transform ${
+          !isNavbarVisible ? '-translate-y-full' : ''
         }`}
       >
         <Container className="relative">
@@ -95,10 +95,11 @@ const Navbar = () => {
 
             {/* profile options */}
             <AnimatePresence>
-              {showSettings && (
-                <Settings
-                  key="profile-settings"
+              {showDropdown && (
+                <Dropdown
+                  key="profile-Dropdown"
                   onSignoutHandler={onSignoutHandler}
+                  setShowDropdown={setShowDropdown}
                 />
               )}
             </AnimatePresence>
@@ -111,7 +112,7 @@ const Navbar = () => {
                   <li
                     key={idx}
                     className={`mr-10 text-white-100 ${classes.navLink} ${
-                      pagePath === link.path ? classes.linkActive : ""
+                      pagePath === link.path ? classes.linkActive : ''
                     }`}
                   >
                     <Link href={`${link.path}`} className="inline-block py-2">
@@ -123,7 +124,7 @@ const Navbar = () => {
             </ul>
 
             <div className="flex items-center  justify-end md:w-3/12">
-              {status === "authenticated" ? (
+              {status === 'authenticated' ? (
                 <>
                   <Link href="/new" className="mr-10">
                     <Button className="flex w-auto items-center justify-center border-2 border-white-100/[.2] px-10 text-white-100">
@@ -134,7 +135,7 @@ const Navbar = () => {
 
                   <div
                     className={`relative flex cursor-pointer items-center justify-center ${classes.profileBox}`}
-                    onClick={() => setShowSettings(pre => !pre)}
+                    onClick={() => setShowDropdown(pre => !pre)}
                   >
                     <Avatar
                       imageSrc={session?.user.image}
@@ -164,7 +165,6 @@ const Navbar = () => {
                   >
                     Signup
                   </Button>
-
                   <MobileNav />
                 </div>
               )}
@@ -177,7 +177,7 @@ const Navbar = () => {
 };
 
 const AuthModel = props => {
-  return createPortal(<Auth {...props} />, document.getElementById("model"));
+  return createPortal(<Auth {...props} />, document.getElementById('model'));
 };
 
 export default Navbar;

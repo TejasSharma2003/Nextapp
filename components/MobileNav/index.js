@@ -1,9 +1,9 @@
-import React, { useEffect, useState } from "react";
-import * as styles from "./navbar.module.css";
+import React, { useEffect, useState } from 'react';
+import * as classes from './navbar.module.css';
 
-import NavLinks from "./NavLinks";
+import NavLinks from './NavLinks';
 
-import { AnimatePresence } from "framer-motion";
+import { AnimatePresence } from 'framer-motion';
 
 const Navbar = () => {
   const [menuActive, setMenuActive] = useState(false);
@@ -23,17 +23,15 @@ const Navbar = () => {
         )}
       </AnimatePresence>
       <nav className={`relative z-40 flex  items-center lg:hidden `}>
-        <div className={`${styles.menu} flex `}>
+        <div
+          className="flex h-20 w-20 items-center justify-center rounded-full bg-black-100"
+          onClick={onClickMenuHandler}
+        >
           <div
-            onClick={onClickMenuHandler}
-            className={`${styles["menu-box"]} flex cursor-pointer items-center justify-center self-center`}
-          >
-            <span
-              className={`${styles.ham} flex h-5 w-12 items-center ${
-                menuActive ? styles["ham-active"] : ""
-              }`}
-            ></span>
-          </div>
+            className={`${classes['ham-bar']} ${
+              menuActive ? classes['ham-active'] : ''
+            } `}
+          ></div>
         </div>
       </nav>
     </>

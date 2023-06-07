@@ -1,31 +1,33 @@
-import React from "react";
-import Logo from "../Logo";
-import Input from "../Form/Input";
-import Button from "@/elements/Button";
-import Image from "next/image";
-import Link from "next/link";
-
-const recentPosts = [
-  {
-    title: "How to become a better developer.",
-  },
-  {
-    title: "Get a sleep of 12 hours is essential.",
-  },
-  {
-    title: "How to wake early in the morning.",
-  },
-  {
-    title: "Get your tasks done with AI easily.",
-  },
-];
+import { use, useEffect, useState } from 'react';
+import Logo from '../Logo';
+import Input from '../Form/Input';
+import Button from '@/elements/Button';
+import Image from 'next/image';
+import Link from 'next/link';
 
 const Footer = () => {
+  const [recentPosts, setRecentPost] = useState([]);
+
+  useEffect(() => {
+
+    const getRecentPosts = async () => {
+      try {
+        const res = await fetch(
+          `https://${process.env.NEXT_PUBLIC_STRAPI_API_URL}/api/blogs?pagination[limit]=4&sort[0]=publishedAt:desc`
+        );
+
+        const { data } = await res.json();
+        setRecentPost(data);
+      } catch (err) {
+        console.log(err);
+      }
+    };
+
+    getRecentPosts();
+  }, []);
+
   return (
     <footer className="relative mt-40 rounded-t-[50px] border border-black-100 bg-black-300 px-5 py-28 xl:px-0">
-      <div className="absolute bottom-0 left-0">
-        <Image src="/images/blob1.svg" width={300} height={300} alt="blob1" />
-      </div>
       <div className=" mx-auto grid max-w-large-w gap-x-20 gap-y-20 sm:grid-cols-2 sm:gap-x-10 md:grid-cols-4 ">
         <div className="flex flex-col items-start">
           <Logo />
@@ -56,7 +58,9 @@ const Footer = () => {
                   key={idx}
                   className="decoration-3 mb-3 text-2xl text-white underline decoration-white-100  underline-offset-8"
                 >
-                  <Link href="/">{post.title}</Link>
+                  <Link href={`/blogs/${post.attributes.slug}`}>
+                    {post.attributes.title}
+                  </Link>
                 </li>
               );
             })}

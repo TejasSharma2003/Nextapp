@@ -8,7 +8,8 @@ const Logo = props => {
       <Image
         src="/images/site/logo.svg"
         width={197}
-        height={30}
+        height={40}
+        alt='logo'
         className={props.className || ""}
       />
     </Link>

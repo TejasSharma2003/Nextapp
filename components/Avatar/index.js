@@ -11,6 +11,7 @@ const Avatar = props => {
       <Image
         src={props.imageSrc || `/images/site/me.jpg`}
         fill={true}
+        alt="me"
         className={`${props.className || ""} `}
         style={{ objectFit: "cover" }}
       />

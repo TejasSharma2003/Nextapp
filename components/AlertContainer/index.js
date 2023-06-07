@@ -43,7 +43,7 @@ const Alert = ({ status, message, root }) => {
       clearTimeout(closeAlertTimer);
       clearTimeout(unMountTimer);
     };
-  }, []);
+  }, [root]);
 
   const tailWindColorClass =
     status === "success"
@@ -59,7 +59,7 @@ const Alert = ({ status, message, root }) => {
       {showAlert && (
         <motion.div
           key="alert"
-          className={`relative max-w-[28rem] overflow-hidden rounded-lg bg-black py-6 pr-14 text-3xl text-white ${classes.alertContainer}`}
+          className={`relative z-[999] max-w-[28rem] overflow-hidden rounded-lg bg-black py-6 pr-14 text-3xl text-white ${classes.alertContainer}`}
           variants={alertVariants}
           initial="hide"
           animate="show"

@@ -5,7 +5,7 @@
 }
 
 .hightlight::before {
-  content: "";
+  content: '';
   position: absolute;
   width: 100%;
   height: 2px;
@@ -14,8 +14,8 @@
   left: 0;
 }
 
-.hightlight::after {
-  content: "";
+/* .hightlight::after {
+  content: '';
   position: absolute;
   width: 100%;
   height: 100%;
@@ -26,4 +26,4 @@
     rgba(255, 96, 46, 0.2) -2.05%,
     rgba(255, 255, 255, 0) 100%
   );
-}
+} */

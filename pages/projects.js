@@ -1,14 +1,9 @@
-import React, { forwardRef } from "react";
+import React from 'react';
 
-import Projects from "@/components/projects";
-import PageTransition from "@/ui/PageTransition";
+import Projects from '@/components/projects';
 
 const ProjectsPage = ref => {
-  return (
-    <PageTransition ref={ref}>
-      <Projects />
-    </PageTransition>
-  );
+  return <Projects />;
 };
 
-export default forwardRef(ProjectsPage);
+export default ProjectsPage;

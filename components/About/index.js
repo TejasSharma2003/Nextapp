@@ -1,21 +1,21 @@
-import React from "react";
-import * as classes from "./about.module.css";
-import SectionHeading from "@/components/SectionHeading";
-import Image from "next/image";
-import { headers } from "next/dist/client/components/headers";
+import React from 'react';
+import * as classes from './about.module.css';
+import SectionHeading from '@/components/SectionHeading';
+import Image from 'next/image';
+import { BsDot } from 'react-icons/bs';
 
-import { BsDot } from "react-icons/bs";
+import me from '@/public/images/site/me.jpg';
 
 const techs = [
-  "javaScript",
-  "ReactJS",
-  "NodeJS",
-  "NextJs",
-  "Tailwind",
-  "UI/UX",
+  'javaScript',
+  'ReactJS',
+  'NodeJS',
+  'NextJs',
+  'Tailwind',
+  'UI/UX',
 ];
 
-import works from "./works";
+import works from './works';
 
 const About = () => {
   return (
@@ -26,16 +26,17 @@ const About = () => {
           <p className="pr-10">
             Tejas Sharma is a highly skilled full stack web developer with
             extensive experience in building robust web applications. With a
-            Bachelor's degree in Computer Science and Engineering, Tejas has
-            been working in the software development industry for over 5 years
+            Bachelor&apos;s degree in Computer Science and Engineering, Tejas
+            has been working in the software development industry for over 5
+            years
           </p>
           <p className="mt-5">
-            Here are a few technologies I've been working with recently:
+            Here are a few technologies I&lsquo;ve been working with recently:
           </p>
           <div className="mt-5 grid grid-cols-3  grid-rows-2 gap-y-2">
             {techs.map((tech, idx) => {
               return (
-                <p className="flex items-center">
+                <p key={idx} className="flex items-center">
                   <span>
                     <BsDot />
                   </span>
@@ -46,13 +47,15 @@ const About = () => {
           </div>
         </div>
         <div className="relative self-center">
-          <div className={`overflow-hidden rounded-3xl ${classes.me}`}>
+          <div
+            className={`h-[350px] w-[300px] overflow-hidden rounded-3xl ${classes.me}`}
+          >
             <Image
-              src="/images/site/me.jpg"
-              width={300}
-              height={300}
+              src={me}
+              fill={true}
+              placeholder="blur"
               alt="me"
-              style={{ objectFit: "cover" }}
+              style={{ objectFit: 'cover' }}
             />
           </div>
           <span className={`${classes.border} rounded-3xl`}></span>
@@ -63,6 +66,7 @@ const About = () => {
         {works.map((work, id) => {
           return (
             <div
+              key={id}
               className={`animate-card mb-20  flex flex-col items-center rounded-3xl bg-black-100  px-5 py-12`}
             >
               <Image
@@ -70,10 +74,10 @@ const About = () => {
                 className="mb-20"
                 width={70}
                 height={70}
-                alt="editing"
+                alt="work"
               />
               <div className="text-center">
-                <h3 className="mb-5 font-primary text-4xl">{work.job}</h3>
+                <h3 className="mb-5  text-[2.2rem]">{work.job}</h3>
                 <p className="text-2xl leading-9 text-white-100">
                   {work.description}
                 </p>
