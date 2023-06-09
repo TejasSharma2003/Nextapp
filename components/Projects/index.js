@@ -1,5 +1,4 @@
 import React from "react";
-import * as classes from "./projects.module.css";
 import SectionHeading from "../SectionHeading";
 import Item from "./item";
 

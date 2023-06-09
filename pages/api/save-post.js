@@ -7,7 +7,6 @@ const blogDirectory = path.join(process.cwd(), "blogs");
 const handler = async (req, res) => {
   if (req.method === "POST") {
     const { starterYaml, blogContent } = req.body;
-    console.log(starterYaml, blogContent);
 
     try {
       const titleSlug = slugify(starterYaml.title, { lower: true });

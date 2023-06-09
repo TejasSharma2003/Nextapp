@@ -1,29 +1,29 @@
-import { use, useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import Logo from '../Logo';
 import Input from '../Form/Input';
 import Button from '@/elements/Button';
-import Image from 'next/image';
 import Link from 'next/link';
 
 const Footer = () => {
-  const [recentPosts, setRecentPost] = useState([]);
+  const [recentBlogs, setRecentBlogs] = useState([]);
 
   useEffect(() => {
-
-    const getRecentPosts = async () => {
+    const getBlogs = async () => {
       try {
-        const res = await fetch(
-          `https://${process.env.NEXT_PUBLIC_STRAPI_API_URL}/api/blogs?pagination[limit]=4&sort[0]=publishedAt:desc`
-        );
+        const res = await fetch('/api/latest-blogs');
 
-        const { data } = await res.json();
-        setRecentPost(data);
+        if (res.status !== 200) {
+          throw new Error('Something went wrong.');
+        }
+        const { blogs } = await res.json();
+
+        setRecentBlogs(blogs);
       } catch (err) {
         console.log(err);
       }
     };
 
-    getRecentPosts();
+    getBlogs();
   }, []);
 
   return (
@@ -52,14 +52,17 @@ const Footer = () => {
             Recent Post
           </h3>
           <ul>
-            {recentPosts.map((post, idx) => {
+            {recentBlogs.map((blog, idx) => {
               return (
                 <li
                   key={idx}
-                  className="decoration-3 mb-3 text-2xl text-white underline decoration-white-100  underline-offset-8"
+                  className="decoration-3 mb-3 mt-5 text-2xl text-white first:mt-0"
                 >
-                  <Link href={`/blogs/${post.attributes.slug}`}>
-                    {post.attributes.title}
+                  <Link
+                    href={`/blogs/${blog.slug}`}
+                    className=" underline underline-offset-4"
+                  >
+                    {blog.title}
                   </Link>
                 </li>
               );

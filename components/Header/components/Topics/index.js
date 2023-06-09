@@ -44,12 +44,12 @@ const Topics = ({ tags, className }) => {
         <div className="flex items-center text-white-100">
           {tags.map((tag, idx) => {
             return (
-              <Link href={`/tags/${tag.attributes.tagName}`} key={idx}>
+              <Link href={`/tags/${tag}`} key={idx}>
                 <span
                   key={idx}
                   className="custom-item ml-5 inline-block cursor-pointer whitespace-nowrap rounded-full bg-black-100 px-5 py-4 text-2xl text-white-100  transition-colors hover:bg-white-100 hover:text-black-100 "
                 >
-                  {tag.attributes.tagName}
+                  {tag}
                 </span>
               </Link>
             );

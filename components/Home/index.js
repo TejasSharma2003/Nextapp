@@ -3,7 +3,6 @@ import Button from '@/elements/Button';
 import Image from 'next/image';
 import Link from 'next/link';
 import GreetIcon from '@/ui/GreetIcon';
-
 import { motion } from 'framer-motion';
 
 const containerVariants = {
@@ -84,5 +83,4 @@ const Home = () => {
     </main>
   );
 };
-
 export default Home;

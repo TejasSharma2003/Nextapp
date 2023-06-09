@@ -1,34 +1,35 @@
-import { fetchAPI } from "@/lib/strapi";
-import DetailBlog from "@/components/DetailBlog";
+import DetailBlog from '@/components/DetailBlog';
+import { getAllFiles, getBlogData } from '@/utils/blog-util';
 
 const DetailBlogPage = ({ blog }) => {
   return <DetailBlog blog={blog} />;
 };
 
-export async function getStaticPaths() {
-  const blogsRes = await fetchAPI("/blogs", { fields: ["slug"] });
+export function getStaticPaths() {
+  const blogFilesNames = getAllFiles();
+
+  const slugs = blogFilesNames.map(fileName => fileName.replace(/\.md$/, ''));
 
   return {
-    paths: blogsRes.data.map(blog => ({
+    paths: slugs.map(slug => ({
       params: {
-        slug: blog.attributes.slug,
+        slug,
       },
     })),
     fallback: false,
   };
 }
 
-export async function getStaticProps({ params }) {
-  const blogsRes = await fetchAPI("/blogs", {
-    filters: {
-      slug: params.slug,
-    },
-    populate: ["image", "author.picture", "tags"],
-  });
+export function getStaticProps(context) {
+  const { params } = context;
+  const { slug } = params;
+
+  const blogData = getBlogData(slug);
 
   return {
-    props: { blog: blogsRes.data[0] },
-    revalidate: 1,
+    props: {
+      blog: blogData,
+    },
   };
 }
 

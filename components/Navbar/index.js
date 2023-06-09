@@ -20,7 +20,7 @@ import Link from 'next/link';
 import { navLinks } from './navlinks';
 
 import Dropdown from './Dropdown';
-import { motion, AnimatePresence, easeInOut } from 'framer-motion';
+import { AnimatePresence } from 'framer-motion';
 import showAlert from '../AlertContainer';
 import MobileNav from '../MobileNav';
 
@@ -126,12 +126,12 @@ const Navbar = () => {
             <div className="flex items-center  justify-end md:w-3/12">
               {status === 'authenticated' ? (
                 <>
-                  <Link href="/new" className="mr-10">
+                  {/* <Link href="/new" className="mr-10">
                     <Button className="flex w-auto items-center justify-center border-2 border-white-100/[.2] px-10 text-white-100">
                       <WriteIcon className=" !h-9 !w-9" />
                       <span className="ml-2 text-2xl">Write</span>
                     </Button>
-                  </Link>
+                  </Link> */}
 
                   <div
                     className={`relative flex cursor-pointer items-center justify-center ${classes.profileBox}`}

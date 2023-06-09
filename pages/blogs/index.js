@@ -5,16 +5,15 @@ import BlogContainer from '@/components/BlogContainer';
 
 import Container from '@/ui/Container';
 
-import { fetchAPI } from '@/lib/strapi';
-import Layout from '@/components/MainContent';
+import { getAllBlogs, getAllTags } from '@/utils/blog-util';
 
-const BlogsPage = ({ blogs, tags, ref }) => {
+const BlogsPage = ({ blogs, tags }) => {
   const [filteredBlogs, setFilterdBlogs] = useState([]);
   const [searchValue, setSearchValue] = useState('');
 
-  const getBlogBySearch = val => {
-    let searchedBlogs = blogs.filter(blog => {
-      return blog.attributes.slug.includes(val);
+  const getBlogBySearch = (val) => {
+    let searchedBlogs = blogs.filter((blog) => {
+      return blog.slug.includes(val);
     });
 
     setFilterdBlogs(searchedBlogs);
@@ -49,18 +48,14 @@ const BlogsPage = ({ blogs, tags, ref }) => {
   );
 };
 
-export async function getStaticProps() {
-  // Run API calls in parallel
-
-  const [blogsRes, tagsRes] = await Promise.all([
-    fetchAPI('/blogs', { populate: ['image', 'tags'] }),
-    fetchAPI('/tags'),
-  ]);
+export function getStaticProps() {
+  const blogs = getAllBlogs();
+  const tags = getAllTags();
 
   return {
     props: {
-      blogs: blogsRes.data,
-      tags: tagsRes.data,
+      blogs,
+      tags,
     },
 
     revalidate: 1,

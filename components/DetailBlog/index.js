@@ -3,7 +3,6 @@ import style from './markdown.module.css';
 import React from 'react';
 import { ReactMarkdown } from 'react-markdown/lib/react-markdown';
 
-import { getStrapiMedia, getStrapiThumbnailImage } from '@/lib/media';
 import ImageLoader from '../ImageLoader';
 
 import { RxEyeOpen } from 'react-icons/rx';
@@ -11,21 +10,13 @@ import formatDate from '@/utils/formateDate';
 import TagList from '@/components/TagList';
 import HightlightHeading from '@/ui/HightlightHeading';
 
+const POST_COVER_IMG_URL = '/images/posts';
+
 const DetailBlog = ({ blog }) => {
-  const placeholderImageUrl = getStrapiThumbnailImage(blog.attributes.image);
-
-  //Using hash as name of the image
-  const imageName = blog.attributes.image.data.attributes.hash;
-
-  const imageUrl = getStrapiMedia(blog.attributes.image);
-
-  const tags = blog.attributes.tags.data;
-
-  const formattedDate = formatDate(blog.attributes.publishedAt);
   return (
     <div>
       <h2 className="mx-auto max-w-[70rem] py-16 text-center font-primary text-6xl font-bold">
-        <HightlightHeading>{blog.attributes.title}</HightlightHeading>
+        <HightlightHeading>{blog.title}</HightlightHeading>
       </h2>
 
       <div className="mx-auto max-w-7xl px-5">
@@ -33,26 +24,26 @@ const DetailBlog = ({ blog }) => {
           <div className="flex items-center ">
             <Avatar width={45} height={45} />
             <div className="ml-5 flex flex-col ">
-              <span className="text-white">{blog.attributes.author}</span>
-              <span className="inline-block">{formattedDate}</span>
+              <span className="text-white">{blog.author}</span>
+              <span className="inline-block">{formatDate(blog.date)}</span>
             </div>
           </div>
           <span className="flex items-center">
             <RxEyeOpen className="mr-3 text-4xl" />
-            {blog.attributes.readingTime} min read
+            {blog.readingTime} min read
           </span>
         </div>
-        <TagList>{tags}</TagList>
+        <TagList>{blog.tags}</TagList>
         <div className="relative mb-16 aspect-video max-h-[500px]  overflow-hidden rounded-lg">
           <ImageLoader
-            name={imageName}
-            orginalPath={imageUrl}
-            placeHolderPath={placeholderImageUrl}
+            name={blog.slug}
+            orginalPath={`${POST_COVER_IMG_URL}/${blog.coverImage}`}
+            placeHolderPath={`${POST_COVER_IMG_URL}/${blog.coverImage}`}
           />
         </div>
         <ReactMarkdown
           className={style.reactMarkDown}
-          children={blog.attributes.content}
+          children={blog.content}
         />
       </div>
     </div>

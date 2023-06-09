@@ -2,14 +2,13 @@ import React from 'react';
 
 import Link from 'next/link';
 
-const TagList = (props) => {
-
-    return (
+const TagList = props => {
+  return (
     <div className={`py-10 ${props.wrapperClass || ''}`}>
       {props.children.map((tag, idx) => {
         return (
           <Link
-            href={`/tags/${tag.attributes.tagName}`}
+            href={`/tags/${tag}`}
             key={idx}
             className="ml-4 underline-offset-4 first:ml-0 hover:underline"
           >
@@ -18,7 +17,7 @@ const TagList = (props) => {
                 props.className || ''
               }`}
             >
-              {tag.attributes.tagName}
+              {tag}
             </span>
           </Link>
         );

@@ -1,11 +1,11 @@
 import React from 'react';
 import { useRouter } from 'next/router';
-import { fetchAPI } from '@/lib/strapi';
 
 import Blog from '@/components/BlogContainer/Blog';
 import BlogGrid from '@/ui/BlogGrid';
 
 import Container from '@/ui/Container';
+import { getAllTags, getBlogsByTagName } from '@/utils/blog-util';
 
 const TaggedBlogsPage = ({ blogs }) => {
   const router = useRouter();
@@ -15,7 +15,7 @@ const TaggedBlogsPage = ({ blogs }) => {
       <div className="mx-auto my-20 max-w-large-w">
         <h3 className="py-5 font-primary text-6xl capitalize">
           <span className="mr-2 font-bold">#</span>
-          {router.query.tagName}
+          {router.query.tag}
         </h3>
       </div>
       <BlogGrid>
@@ -27,34 +27,28 @@ const TaggedBlogsPage = ({ blogs }) => {
   );
 };
 
-export async function getStaticPaths() {
-  const tagsRes = await fetchAPI('/tags', { fields: ['tagName'] });
+export function getStaticPaths() {
+  const tags = getAllTags();
 
   return {
-    paths: tagsRes.data.map(tag => ({
+    paths: tags.map(tag => ({
       params: {
-        tagName: tag.attributes.tagName.toLowerCase(),
+        tag,
       },
     })),
     fallback: false,
   };
 }
 
-export async function getStaticProps({ params }) {
-  const tagsRes = await fetchAPI('/tags', {
-    filters: {
-      tagName: params.tagName,
-    },
-    populate: {
-      blogs: {
-        populate: ['image', 'tags'],
-      },
-    },
-  });
+export function getStaticProps(context) {
+  const { params } = context;
+
+  const blogs = getBlogsByTagName(params.tag);
 
   return {
-    props: { blogs: tagsRes.data[0].attributes.blogs.data },
-    revalidate: 1,
+    props: {
+      blogs,
+    },
   };
 }
 

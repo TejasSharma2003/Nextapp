@@ -1,6 +1,5 @@
 import React from "react";
 import * as classes from "./projects.module.css";
-import Container from "@/ui/Container";
 import Image from "next/image";
 
 import Button from "@/elements/Button";

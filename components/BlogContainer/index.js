@@ -1,8 +1,8 @@
 import Blog from './Blog';
 
 const BlogContainer = props => {
-  const blogs = props.blogs.map((blog, idx) => {
-    return <Blog key={idx} blog={blog} />;
+  const blogs = props.blogs.map(blog => {
+    return <Blog key={blog.slug} blog={blog} />;
   });
 
   return (

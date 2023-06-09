@@ -7,6 +7,7 @@ const nextConfig = {
       '127.0.0.1',
       'lh3.googleusercontent.com',
       'avatars.githubusercontent.com',
+      'portfolio-strapi-backend.onrender.com'
     ],
   },
 };
