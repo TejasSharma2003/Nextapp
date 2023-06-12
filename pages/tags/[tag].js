@@ -12,7 +12,7 @@ const TaggedBlogsPage = ({ blogs }) => {
 
   return (
     <Container>
-      <div className="mx-auto my-20 max-w-large-w">
+      <div className="mx-auto mb-20 max-w-large-w">
         <h3 className="py-5 font-primary text-6xl capitalize">
           <span className="mr-2 font-bold">#</span>
           {router.query.tag}

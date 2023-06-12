@@ -250,7 +250,7 @@ const Auth = (props) => {
           animate="show"
           key="model"
           exit="exit"
-          className={` relative flex max-w-5xl  flex-1  justify-center rounded-2xl  bg-black-300 py-32 text-center  text-white ${
+          className={` relative mt-auto mb-auto flex flex-1  justify-center  rounded-2xl bg-black-300  py-32 text-center text-white min-h-screen md:max-w-5xl ${
             classes.container
           } ${props.modelIsVisible ? classes['animate-line'] : ''}`}
         >
@@ -259,7 +259,7 @@ const Auth = (props) => {
             onClick={props.onCloseModelHandler}
           />
 
-          <div className="max-w-3xl flex-1 px-16">
+          <div className="max-w-3xl flex-1 px-16 flex flex-col justify-center">
             <h1 className="mb-20 font-primary  text-6xl  leading-snug">
               {isLoginMounted ? (
                 <span>

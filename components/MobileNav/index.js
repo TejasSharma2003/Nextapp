@@ -9,7 +9,7 @@ const Navbar = () => {
   const [menuActive, setMenuActive] = useState(false);
 
   const onClickMenuHandler = () => {
-    setMenuActive(pre => !pre);
+    setMenuActive((pre) => !pre);
   };
 
   const resetMenuActive = () => {
@@ -22,18 +22,23 @@ const Navbar = () => {
           <NavLinks menuActive={menuActive} resetMenuActive={resetMenuActive} />
         )}
       </AnimatePresence>
-      <nav className={`relative z-40 flex  items-center lg:hidden `}>
+
+      <div
+        className={`absolute right-0 h-20 w-20 rounded-full bg-black-100 transition-transform duration-700  ease-fade-up lg:hidden ${
+          menuActive ? 'scale-[50]' : ''
+        } `}
+      ></div>
+
+      <div
+        className={`relative z-40 flex h-20  w-20 items-center justify-center rounded-full bg-black-100 transition  lg:hidden`}
+        onClick={onClickMenuHandler}
+      >
         <div
-          className="flex h-20 w-20 items-center justify-center rounded-full bg-black-100"
-          onClick={onClickMenuHandler}
-        >
-          <div
-            className={`${classes['ham-bar']} ${
-              menuActive ? classes['ham-active'] : ''
-            } `}
-          ></div>
-        </div>
-      </nav>
+          className={`${classes['ham-bar']} ${
+            menuActive ? classes['ham-active'] : ''
+          } `}
+        ></div>
+      </div>
     </>
   );
 };

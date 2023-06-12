@@ -21,7 +21,7 @@ const About = () => {
   return (
     <div className=" mx-auto max-w-large-w px-5">
       <SectionHeading>About.</SectionHeading>
-      <div className="flex flex-col justify-between md:flex-row md:items-center">
+      <div className="mb-40 flex flex-col justify-between md:flex-row md:items-center">
         <div className="pb-28 pt-10 text-2xl leading-10   text-white-100  md:max-w-4xl">
           <p className="pr-10">
             Tejas Sharma is a highly skilled full stack web developer with
@@ -48,11 +48,12 @@ const About = () => {
         </div>
         <div className="relative self-center">
           <div
-            className={`relative h-[350px] w-[300px] overflow-hidden rounded-3xl ${classes.me}`}
+            className={`relative  overflow-hidden rounded-3xl ${classes.me}`}
           >
             <Image
               src={me}
-              fill={true}
+              width={300}
+              height={369}
               placeholder="blur"
               alt="me"
               style={{ objectFit: 'cover' }}

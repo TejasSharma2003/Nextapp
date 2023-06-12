@@ -27,7 +27,7 @@ const MainContent = (props) => {
         variants={variants}
         transition={{ type: 'linear' }}
         //give margin-top except homepage since its gonna create a overflow since height is set to 100vh
-        className={`${props.page === '/' || 'pt-36'} `}
+        className={`${props.page === '/' || 'pt-52'} `}
       >
         {props.children}
       </motion.div>

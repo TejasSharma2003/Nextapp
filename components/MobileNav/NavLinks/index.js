@@ -16,7 +16,7 @@ const linkVariant = {
     y: 0,
     transition: {
       ease: [0.34, 0.2, 0, 0.97],
-      duration: 0.8,
+      duration: 0.4,
     },
   },
   hidden: { opacity: 0, y: 20 },
@@ -25,26 +25,26 @@ const linkVariant = {
     y: 20,
     transition: {
       ease: [0.34, 0.2, 0, 0.97],
-      duration: 0.3,
+      duration: 0.4,
     },
   },
 };
 
-const NavLinks = props => {
+const NavLinks = (props) => {
   return (
     <motion.div
       key="container"
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
-      className={`${styles.navLinksContainer} flex items-center justify-center`}
+      className={`${styles.navLinksContainer} relative  z-30 flex items-center justify-center`}
     >
       <motion.ul
         variants={linksContainerVariants}
         initial="hidden"
         animate="show"
         exit="exit"
-        className={`${styles.links} text-center font-primary`}
+        className={`${styles.links} text-center   text-5xl text-primary sm:text-6xl `}
       >
         {links.map((link, idx) => {
           return (
@@ -52,7 +52,7 @@ const NavLinks = props => {
               onClick={() => props.resetMenuActive()}
               variants={linkVariant}
               key={idx}
-              className={`font-play-fair block tracking-wider`}
+              className={` mb-14 block tracking-wider last:mb-0`}
             >
               <Link href={link.path} className={`${styles.link}`}>
                 {link.name}

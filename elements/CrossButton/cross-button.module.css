@@ -6,7 +6,7 @@
 
 .item:before,
 .item:after {
-  content: "";
+  content: '';
   position: absolute;
   width: 80%;
   height: 2px;
@@ -24,9 +24,11 @@
   transform: translate(-50%, -50%) rotate(-45deg);
 }
 
-.item:hover:before,
-.item:focus:before,
-.item:hover:after,
-.item:focus:after {
-  transform: translate(-50%, -50%) rotate(180deg);
+@media (hover: hover) {
+  .item:hover:before,
+  .item:focus:before,
+  .item:hover:after,
+  .item:focus:after {
+    transform: translate(-50%, -50%) rotate(180deg);
+  }
 }
