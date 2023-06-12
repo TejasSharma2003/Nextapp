@@ -48,7 +48,7 @@ const About = () => {
         </div>
         <div className="relative self-center">
           <div
-            className={`h-[350px] w-[300px] overflow-hidden rounded-3xl ${classes.me}`}
+            className={`relative h-[350px] w-[300px] overflow-hidden rounded-3xl ${classes.me}`}
           >
             <Image
               src={me}
@@ -67,7 +67,7 @@ const About = () => {
           return (
             <div
               key={id}
-              className={`animate-card mb-20  flex flex-col items-center rounded-3xl bg-black-100  px-5 py-12`}
+              className={`animate-card relative mb-20 flex flex-col items-center rounded-3xl bg-black-100  px-5 py-12`}
             >
               <Image
                 src={work.image}

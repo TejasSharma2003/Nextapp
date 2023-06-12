@@ -15,11 +15,10 @@ const POST_COVER_IMG_URL = '/images/posts';
 const DetailBlog = ({ blog }) => {
   return (
     <div>
-      <h2 className="mx-auto max-w-[70rem] py-16 text-center font-primary text-6xl font-bold">
-        <HightlightHeading>{blog.title}</HightlightHeading>
-      </h2>
-
       <div className="mx-auto max-w-7xl px-5">
+        <h1 className="mx-auto max-w-[70rem] py-16 text-center font-primary text-6xl font-bold !leading-[1.3]">
+          {blog.title}
+        </h1>
         <div className="flex items-center justify-between text-[1.3rem] text-white-100">
           <div className="flex items-center ">
             <Avatar width={45} height={45} />
@@ -33,7 +32,7 @@ const DetailBlog = ({ blog }) => {
             {blog.readingTime} min read
           </span>
         </div>
-        <TagList>{blog.tags}</TagList>
+        <TagList wrapperClassName="pt-10">{blog.tags}</TagList>
         <div className="relative mb-16 aspect-video max-h-[500px]  overflow-hidden rounded-lg">
           <ImageLoader
             name={blog.slug}

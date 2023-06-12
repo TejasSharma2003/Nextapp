@@ -13,7 +13,7 @@ const BlogsPage = ({ blogs, tags }) => {
 
   const getBlogBySearch = (val) => {
     let searchedBlogs = blogs.filter((blog) => {
-      return blog.slug.includes(val);
+      return blog.slug.toLowerCase().includes(val.toLowerCase());
     });
 
     setFilterdBlogs(searchedBlogs);
@@ -23,9 +23,9 @@ const BlogsPage = ({ blogs, tags }) => {
   let content;
   if (filteredBlogs.length === 0 && searchValue) {
     content = (
-      <span className="absolute left-1/2 top-10 -translate-x-1/2 text-4xl">
+      <div className="text-4xl text-center leading-snug">
         Nothing here but Crickets.
-      </span>
+      </div>
     );
   } else if (filteredBlogs.length > 0) {
     content = <BlogContainer blogs={filteredBlogs} />;

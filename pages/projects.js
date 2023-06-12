@@ -2,7 +2,7 @@ import React from 'react';
 
 import Projects from '@/components/Projects';
 
-const ProjectsPage = ref => {
+const ProjectsPage = () => {
   return <Projects />;
 };
 

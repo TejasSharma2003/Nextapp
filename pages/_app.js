@@ -1,14 +1,18 @@
 import '@/styles/globals.css';
 
+import Router from 'next/router';
 import { SessionProvider } from 'next-auth/react';
 import { useRouter } from 'next/router';
 import NextNProgress from 'nextjs-progressbar';
 import Layout from './../components/Layout';
 
+// This hook returns a function that you can call to remove unused styles when the 'out' phase of the transition is complete and the new page mounts.
+import { useNextCssRemovalPrevention } from '@madeinhaus/nextjs-page-transition';
+
 export default function MyApp({ Component, pageProps }) {
   const { session } = pageProps;
-  const router = useRouter();
-  const page = router.asPath;
+
+  const _ = useNextCssRemovalPrevention();
 
   return (
     <>

@@ -12,22 +12,31 @@ module.exports = {
           '0%': { opacity: '0' },
           '100%': { opacity: '1' },
         },
-        wave:{
-          '0%':{
-            transform: 'rotate(-45deg)'
+        wave: {
+          '0%': {
+            transform: 'rotate(-45deg)',
           },
-          '50%':{
-            transform:'rotate(-20deg)'
+          '50%': {
+            transform: 'rotate(-20deg)',
+          },
+          '100%': {
+            transform: 'rotate(-45deg)',
+          },
+        },
+        show_scroll_y:{
+          '0%':{
+            overflowY:'hidden'
           },
           '100%':
           {
-            transform:'rotate(-45deg)'
+            overflowY:'auto'
           }
         }
       },
       animation: {
-        'fadeIn': 'fadeIn 1s linear',
-        'wave':'wave 1s linear infinite'
+        fadeIn: 'fadeIn 1s linear',
+        wave: 'wave 1s linear infinite',
+        show_scroll_y:'show_scroll_y 1s linear 250ms forwards'
       },
       backgroundImage: {
         'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
@@ -36,7 +45,8 @@ module.exports = {
       },
       fontFamily: {
         primary: ['Playfair Display', 'serif'],
-        secondary: ['Poppins', 'sans-serif'],
+        // secondary: ['Poppins', 'sans-serif'],
+        secondary: ['Outfit','serif'],
       },
       padding: {
         'pad-btn': '.8rem',

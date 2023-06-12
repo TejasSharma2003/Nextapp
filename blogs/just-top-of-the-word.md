@@ -4,7 +4,7 @@ author: John Doe
 coverImage: just-top-of-the-word.jpg
 excerpt: JSX (JavaScript XML) is an extension to JavaScript syntax that allows you to write HTML-like code within JavaScript. It provides a concise and expressive way to describe the structure and appearance of the UI components.
 date: '2023-06-09'
-tags: ['ReactJS', 'Programming','Philosophy','Asceticisum']
+tags: ['ReactJS','Philosophy','Asceticisum']
 readingTime: 10
 ---
 

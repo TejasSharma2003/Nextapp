@@ -8,6 +8,7 @@ import SaveIcon from '@/ui/SaveIcon';
 
 import Link from 'next/link';
 import formatDate from '@/utils/formateDate';
+import TagList from '@/components/TagList';
 
 const POST_COVER_IMG_URL = '/images/posts';
 
@@ -24,13 +25,13 @@ const Blog = ({ blog }) => {
             width={370}
             height={246}
             style={{ objectFit: 'cover' }}
-            className=" w-full h-full"
+            className=" h-full w-full"
           />
         </div>
       </Link>
 
       <div className="flex flex-1 flex-col px-5">
-        <ul className="my-4 flex">
+        <ul className={`my-4 flex overflow-x-auto ${classes.tagsWrapper}`}>
           {blog.tags.map((tagName, idx) => {
             return (
               <li

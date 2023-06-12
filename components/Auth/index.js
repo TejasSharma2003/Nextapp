@@ -70,7 +70,7 @@ const modelVariants = {
   },
 };
 
-const Auth = props => {
+const Auth = (props) => {
   const [showSpinner, setShowSpinner] = useState(false);
 
   const [isLoginMounted, setIsLoginMounted] = useState(
@@ -84,7 +84,7 @@ const Auth = props => {
     onChange: onChangeEmailInput,
     onBlur: onBlurEmailInput,
     resetInput: resetEmail,
-  } = useForm(val => EMAIL_REGEX.test(val));
+  } = useForm((val) => EMAIL_REGEX.test(val));
 
   const {
     input: password,
@@ -93,7 +93,7 @@ const Auth = props => {
     onChange: onChangePasswordInput,
     onBlur: onBlurPasswordInput,
     resetInput: resetPassword,
-  } = useForm(val => PASSWORD_REGEX.test(val));
+  } = useForm((val) => PASSWORD_REGEX.test(val));
 
   const {
     input: name,
@@ -102,7 +102,7 @@ const Auth = props => {
     onChange: onChangeNameInput,
     onBlur: onBlurNameInput,
     resetInput: resetName,
-  } = useForm(val => USERNAME_REGEX.test(val));
+  } = useForm((val) => USERNAME_REGEX.test(val));
 
   let loginFormIsValid = false;
   if (emailIsValid && passwordIsValid) {
@@ -110,10 +110,10 @@ const Auth = props => {
   }
 
   const onChangeAuthMethod = () => {
-    setIsLoginMounted(pre => !pre);
+    setIsLoginMounted((pre) => !pre);
   };
 
-  const onSubmitHandler = async e => {
+  const onSubmitHandler = async (e) => {
     e.preventDefault();
 
     //Validation....
@@ -203,9 +203,9 @@ const Auth = props => {
     setShowSpinner(false);
   };
 
-  const onChangeHandler = e => {
+  const onChangeHandler = (e) => {
     const { name, value } = e.target;
-    setFormInput(pre => {
+    setFormInput((pre) => {
       return { ...pre, [name]: value };
     });
   };
@@ -221,162 +221,171 @@ const Auth = props => {
   return (
     <>
       {/* backdrop */}
-      <motion.div
+      {/* <motion.div
         key="backdrop"
         variants={modelContainerVariants}
         initial="hidden"
         animate="show"
         exit="exit"
         className="fixed top-0  z-[100] flex min-h-screen w-screen justify-center bg-black/[.8] py-5 transition-colors"
-      ></motion.div>
+      ></motion.div> */}
 
       {/* modal wrapper */}
-      <motion.div
+      {/* <motion.div
         variants={modelVariants}
         initial="hidden"
         animate="show"
         key="model"
         exit="exit"
         className="fixed inset-x-0 inset-y-0 z-[110] "
+      > */}
+      <div
+        className={`fixed inset-x-0 inset-y-0 z-[100] flex items-center justify-center  pt-10 ${
+          props.modelIsVisible ? 'animate-show_scroll_y' : ''
+        }`}
       >
-        <div className="absolute inset-x-0 inset-y-0 flex items-center justify-center overflow-y-auto  pt-10">
-          <div
-            className={`relative flex  max-w-5xl  flex-1 justify-center  rounded-2xl  bg-black-300 py-32 text-center  text-white ${
-              classes.container
-            } ${props.modelIsVisible ? classes['animate-line'] : ''}`}
-          >
-            <div className="max-w-3xl flex-1 px-16">
-              <CrossButton
-                className="!absolute !right-5 !top-5"
-                onClick={props.onCloseModelHandler}
+        <motion.div
+          variants={modelVariants}
+          initial="hidden"
+          animate="show"
+          key="model"
+          exit="exit"
+          className={` relative flex max-w-5xl  flex-1  justify-center rounded-2xl  bg-black-300 py-32 text-center  text-white ${
+            classes.container
+          } ${props.modelIsVisible ? classes['animate-line'] : ''}`}
+        >
+          <CrossButton
+            className="!absolute !right-5 !top-5"
+            onClick={props.onCloseModelHandler}
+          />
+
+          <div className="max-w-3xl flex-1 px-16">
+            <h1 className="mb-20 font-primary  text-6xl  leading-snug">
+              {isLoginMounted ? (
+                <span>
+                  Don&apos;t miss a beat.
+                  <br /> Login now...
+                </span>
+              ) : (
+                <span>
+                  Ready to get started? <br /> Sign up now!
+                </span>
+              )}
+            </h1>
+
+            <form onSubmit={onSubmitHandler}>
+              {/* Name */}
+              {!isLoginMounted && (
+                <Input
+                  type="text"
+                  placeholder="Name"
+                  icon={UserIcon}
+                  name="name"
+                  value={name}
+                  onChange={onChangeNameInput}
+                  onBlur={onBlurNameInput}
+                  nameIsInvalid={nameIsInvalid}
+                />
+              )}
+              {/* Email */}
+
+              <Input
+                type="email"
+                placeholder="Email"
+                icon={EmailIcon}
+                name="email"
+                value={email}
+                onChange={onChangeEmailInput}
+                onBlur={onBlurEmailInput}
+                emailIsInvalid={emailIsInvalid}
               />
 
-              <h1 className="mb-20 font-primary  text-6xl  leading-snug">
-                {isLoginMounted ? (
-                  <span>
-                    Don&apos;t miss a beat.
-                    <br /> Login now...
-                  </span>
-                ) : (
-                  <span>
-                    Ready to get started? <br /> Sign up now!
-                  </span>
-                )}
-              </h1>
-
-              <form onSubmit={onSubmitHandler}>
-                {/* Name */}
-                {!isLoginMounted && (
-                  <Input
-                    type="text"
-                    placeholder="Name"
-                    icon={UserIcon}
-                    name="name"
-                    value={name}
-                    onChange={onChangeNameInput}
-                    onBlur={onBlurNameInput}
-                    nameIsInvalid={nameIsInvalid}
-                  />
-                )}
-                {/* Email */}
-
-                <Input
-                  type="email"
-                  placeholder="Email"
-                  icon={EmailIcon}
-                  name="email"
-                  value={email}
-                  onChange={onChangeEmailInput}
-                  onBlur={onBlurEmailInput}
-                  emailIsInvalid={emailIsInvalid}
-                />
-
-                {/* Password */}
-                <Input
-                  type="password"
-                  placeholder="Password"
-                  icon={PasswordIcon}
-                  name="password"
-                  value={password}
-                  onChange={onChangePasswordInput}
-                  onBlur={onBlurPasswordInput}
-                  passwordIsInvalid={passwordIsInvalid}
-                />
-
-                <Button
-                  type="fill"
-                  className="relative mb-7 flex w-full items-center justify-center disabled:bg-primary/[.8]"
-                  onClick={null}
-                  disabled={showSpinner || !loginFormIsValid}
-                >
-                  <AnimatePresence>
-                    {showSpinner && (
-                      <motion.span
-                        key="spinner"
-                        initial={{ opacity: 0 }}
-                        animate={{ opacity: 1 }}
-                        exit={{ opacity: 0 }}
-                        className="absolute left-2/4 -translate-x-[60px]"
-                      >
-                        <SmallSpinner />
-                      </motion.span>
-                    )}
-                  </AnimatePresence>
-                  Continue
-                </Button>
-              </form>
-
-              <span className={`${classes.divider} text-white/[.5]`}>OR</span>
+              {/* Password */}
+              <Input
+                type="password"
+                placeholder="Password"
+                icon={PasswordIcon}
+                name="password"
+                value={password}
+                onChange={onChangePasswordInput}
+                onBlur={onBlurPasswordInput}
+                passwordIsInvalid={passwordIsInvalid}
+              />
 
               <Button
-                className="my-7 flex w-full items-center justify-center bg-black-100"
-                onClick={onSignInWithGoogle}
+                type="fill"
+                className="relative mb-7 flex w-full items-center justify-center disabled:bg-primary/[.8]"
+                onClick={null}
+                disabled={showSpinner || !loginFormIsValid}
               >
-                <FcGoogle className="mr-5 inline-block text-4xl" />
-                <span className="mr-2">
-                  {isLoginMounted ? 'Login' : 'Signup'}
-                </span>{' '}
-                with Google
-              </Button>
-
-              <Button
-                className="mb-10 flex w-full items-center  justify-center bg-black-100"
-                onClick={onSignInWithGithub}
-              >
-                <BsGithub className="mr-5 inline-block text-4xl" />
-                <span className="mr-2">
-                  {isLoginMounted ? 'Login' : 'Signup'}
-                </span>{' '}
-                with Github
-              </Button>
-
-              <div>
-                {isLoginMounted ? (
-                  <span className="text-2xl">
-                    Don&lsquo;t have a account?
-                    <span
-                      onClick={onChangeAuthMethod}
-                      className="ml-1 cursor-pointer text-blue-500"
+                <AnimatePresence>
+                  {showSpinner && (
+                    <motion.span
+                      key="spinner"
+                      initial={{ opacity: 0 }}
+                      animate={{ opacity: 1 }}
+                      exit={{ opacity: 0 }}
+                      className="absolute left-2/4 -translate-x-[60px]"
                     >
-                      Signup
-                    </span>
+                      <SmallSpinner />
+                    </motion.span>
+                  )}
+                </AnimatePresence>
+                Continue
+              </Button>
+            </form>
+
+            <span className={`${classes.divider} text-white/[.5]`}>OR</span>
+
+            <Button
+              className="my-7 flex w-full items-center justify-center bg-black-100"
+              onClick={onSignInWithGoogle}
+            >
+              <FcGoogle className="mr-5 inline-block text-4xl" />
+              <span className="mr-2">
+                {isLoginMounted ? 'Login' : 'Signup'}
+              </span>{' '}
+              with Google
+            </Button>
+
+            <Button
+              className="mb-10 flex w-full items-center  justify-center bg-black-100"
+              onClick={onSignInWithGithub}
+            >
+              <BsGithub className="mr-5 inline-block text-4xl" />
+              <span className="mr-2">
+                {isLoginMounted ? 'Login' : 'Signup'}
+              </span>{' '}
+              with Github
+            </Button>
+
+            <div>
+              {isLoginMounted ? (
+                <span className="text-2xl">
+                  Don&lsquo;t have a account?
+                  <span
+                    onClick={onChangeAuthMethod}
+                    className="ml-1 cursor-pointer text-blue-500"
+                  >
+                    Signup
                   </span>
-                ) : (
-                  <span className="text-2xl">
-                    Already have an account?
-                    <span
-                      onClick={onChangeAuthMethod}
-                      className="ml-1 cursor-pointer text-blue-500"
-                    >
-                      Login
-                    </span>
+                </span>
+              ) : (
+                <span className="text-2xl">
+                  Already have an account?
+                  <span
+                    onClick={onChangeAuthMethod}
+                    className="ml-1 cursor-pointer text-blue-500"
+                  >
+                    Login
                   </span>
-                )}
-              </div>
+                </span>
+              )}
             </div>
           </div>
-        </div>
-      </motion.div>
+        </motion.div>
+      </div>
+      {/* </motion.div> */}
     </>
   );
 };

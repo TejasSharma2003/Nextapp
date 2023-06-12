@@ -12,6 +12,7 @@ const Item = ({ project }) => {
           Latest work
         </span>
         <h1 className="mb-8 mt-5 text-6xl font-semibold">{project.name}</h1>
+        
         <div className="my-4 flex flex-wrap items-center">
           {project.skills.map((skill, idx) => {
             return (
@@ -37,7 +38,7 @@ const Item = ({ project }) => {
           </Button>
         </div>
       </div>
-      <div className="relative self-center">
+      <div className="relative self-center ">
         <div className={`${classes.project}  overflow-hidden rounded-3xl `}>
           <Image
             src={`/images/site/${project.slug}.jpg`}

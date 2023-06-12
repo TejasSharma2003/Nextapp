@@ -29,7 +29,7 @@ const itemVariants = {
 
 const Home = () => {
   return (
-    <main className="relative  flex items-center justify-center py-40  ">
+    <main className="relative  flex min-h-screen items-center justify-center  py-40 ">
       <motion.div
         variants={containerVariants}
         initial="hidden"
@@ -38,7 +38,7 @@ const Home = () => {
       >
         <motion.div
           variants={itemVariants}
-          className="relative h-[150px] w-[150px] rounded-full "
+          className="relative h-[120px] w-[120px] rounded-full sm:w-[130px] sm:h-[130px] "
         >
           <Image
             src="/images/site/avatar.jpg"
@@ -61,10 +61,10 @@ const Home = () => {
 
         <motion.h1
           variants={itemVariants}
-          className="mb-3 mt-3 text-center font-primary text-5xl capitalize leading-[1.2] sm:text-[4rem]  "
+          className="mb-3 mt-3 px-6  text-center text-5xl capitalize !leading-[1.3] sm:text-6xl"
         >
           Building websites that work <br />
-          seamlessly, so you don&lsquo;t have to
+          seamlessly, so you don&lsquo;t have to.
         </motion.h1>
 
         <motion.div variants={itemVariants} className="mt-10 flex items-center">

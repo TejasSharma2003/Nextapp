@@ -49,7 +49,7 @@ const Navbar = () => {
     resetShowSetting();
   };
 
-  const onOpenModelHandler = event => {
+  const onOpenModelHandler = (event) => {
     setModelIsVisile(true);
     const { innerText } = event.target;
     setModelFor(innerText.toLowerCase());
@@ -83,12 +83,12 @@ const Navbar = () => {
         )}
       </AnimatePresence>
       <div
-        className={`sticky top-0 z-50 w-full  animate-fadeIn backdrop-blur transition-transform ${
+        className={`fixed top-0 z-50 w-full  animate-fadeIn backdrop-blur transition-transform ${
           !isNavbarVisible ? '-translate-y-full' : ''
         }`}
       >
         <Container className="relative">
-          <nav className={`flex items-center justify-between py-5`}>
+          <nav className={`flex items-center justify-between pt-10`}>
             <div className="md:w-3/12">
               <Logo />
             </div>
@@ -135,7 +135,7 @@ const Navbar = () => {
 
                   <div
                     className={`relative flex cursor-pointer items-center justify-center ${classes.profileBox}`}
-                    onClick={() => setShowDropdown(pre => !pre)}
+                    onClick={() => setShowDropdown((pre) => !pre)}
                   >
                     <Avatar
                       imageSrc={session?.user.image}
@@ -151,7 +151,7 @@ const Navbar = () => {
                 <div className="relative flex items-center">
                   <Button
                     type="ghost"
-                    className="mr-10 hidden px-10 py-2 text-[1.7rem] sm:block"
+                    className="mr-10  px-10 py-2 text-[1.7rem] sm:block"
                     onClick={onOpenModelHandler}
                   >
                     Login
@@ -176,7 +176,7 @@ const Navbar = () => {
   );
 };
 
-const AuthModel = props => {
+const AuthModel = (props) => {
   return createPortal(<Auth {...props} />, document.getElementById('model'));
 };
 

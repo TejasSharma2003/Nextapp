@@ -1,10 +1,10 @@
 .me {
-  transform: translate(-16px, -16px);
+  transform: translate(-16px, -16px) !important;
   transition: transform 0.2s;
 }
 
 .me:hover {
-  transform: translate(0, 0);
+  transform: translate(0, 0) !important;
 }
 
 .border {
