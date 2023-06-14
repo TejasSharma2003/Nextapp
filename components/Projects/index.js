@@ -1,8 +1,8 @@
-import React from "react";
-import SectionHeading from "../SectionHeading";
-import Item from "./item";
+import React from 'react';
+import SectionHeading from '../SectionHeading';
+import Item from './item';
 
-import { projects as projectArray } from "./projects";
+import { projects as projectArray } from './projects';
 
 const Projects = () => {
   return (

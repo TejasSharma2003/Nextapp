@@ -1,11 +1,8 @@
 import React from 'react';
-import classes from './blogGrid.module.css';
 
-const BlogGrid = props => {
+const BlogGrid = (props) => {
   return (
-    <div
-      className={`mx-auto grid max-w-large-w gap-10 sm:grid-cols-2 lg:grid-cols-3 ${props.className}`}
-    >
+    <div className="mx-auto grid max-w-large-w justify-center gap-y-20  sm:grid-cols-2 sm:gap-x-20  sm:gap-y-0 lg:grid-cols-3">
       {props.children}
     </div>
   );

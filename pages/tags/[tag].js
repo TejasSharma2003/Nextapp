@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { useRouter } from 'next/router';
 
 import Blog from '@/components/BlogContainer/Blog';
@@ -31,7 +31,7 @@ export function getStaticPaths() {
   const tags = getAllTags();
 
   return {
-    paths: tags.map(tag => ({
+    paths: tags.map((tag) => ({
       params: {
         tag,
       },

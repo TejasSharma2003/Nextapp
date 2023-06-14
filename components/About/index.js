@@ -7,7 +7,7 @@ import { BsDot } from 'react-icons/bs';
 import me from '@/public/images/site/me.jpg';
 
 const techs = [
-  'javaScript',
+  'JavaScript',
   'ReactJS',
   'NodeJS',
   'NextJs',
@@ -16,32 +16,31 @@ const techs = [
 ];
 
 import works from './works';
+import Para from '../Para';
 
 const About = () => {
   return (
     <div className=" mx-auto max-w-large-w px-5">
       <SectionHeading>About.</SectionHeading>
-      <div className="mb-40 flex flex-col justify-between md:flex-row md:items-center">
-        <div className="pb-28 pt-10 text-2xl leading-10   text-white-100  md:max-w-4xl">
-          <p className="pr-10">
+      <div className="mb-40 flex flex-col justify-between md:flex-row ">
+        <div className="md:max-w-4xl">
+          <Para className="mt-28 pr-10 leading-10">
             Tejas Sharma is a highly skilled full stack web developer with
             extensive experience in building robust web applications. With a
             Bachelor&apos;s degree in Computer Science and Engineering, Tejas
             has been working in the software development industry for over 5
             years
-          </p>
-          <p className="mt-5">
+          </Para>
+          <Para className="mt-5">
             Here are a few technologies I&lsquo;ve been working with recently:
-          </p>
+          </Para>
           <div className="mt-5 grid grid-cols-3  grid-rows-2 gap-y-2">
             {techs.map((tech, idx) => {
               return (
-                <p key={idx} className="flex items-center">
-                  <span>
-                    <BsDot />
-                  </span>
+                <span key={idx} className="flex text-2xl text-white/[.7] items-center">
+                  <BsDot className='w-10 h-10' />
                   {tech}
-                </p>
+                </span>
               );
             })}
           </div>
@@ -63,7 +62,7 @@ const About = () => {
         </div>
       </div>
       <SectionHeading>What I do.</SectionHeading>
-      <div className="mt-24 flex  flex-col gap-x-16 sm:grid  sm:grid-cols-2 lg:grid-cols-4">
+      <div className="mt-28 flex  flex-col gap-x-16 sm:grid  sm:grid-cols-2 lg:grid-cols-4">
         {works.map((work, id) => {
           return (
             <div
@@ -79,9 +78,7 @@ const About = () => {
               />
               <div className="text-center">
                 <h3 className="mb-5  text-[2.2rem]">{work.job}</h3>
-                <p className="text-2xl leading-9 text-white-100">
-                  {work.description}
-                </p>
+                <Para className="leading-10">{work.description}</Para>
               </div>
             </div>
           );

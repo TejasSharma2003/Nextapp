@@ -8,14 +8,14 @@ import SaveIcon from '@/ui/SaveIcon';
 
 import Link from 'next/link';
 import formatDate from '@/utils/formateDate';
-import TagList from '@/components/TagList';
+import Para from '@/components/Para';
 
 const POST_COVER_IMG_URL = '/images/posts';
 
 const Blog = ({ blog }) => {
   return (
     <div
-      className={` flex h-full flex-col overflow-hidden rounded-2xl  bg-black-100 lg:max-w-blog-container ${classes.blog} animate-card`}
+      className={` flex h-full max-w-3xl flex-col overflow-hidden  rounded-2xl bg-black-100 lg:max-w-blog-container ${classes.blog} animate-card`}
     >
       <Link href={`/blogs/${blog.slug}`}>
         <div className={`${classes.image}`}>
@@ -31,7 +31,7 @@ const Blog = ({ blog }) => {
       </Link>
 
       <div className="flex flex-1 flex-col px-5">
-        <ul className={`my-4 flex overflow-x-auto ${classes.tagsWrapper}`}>
+        <ul className={` mt-5 flex overflow-x-auto ${classes.tagsWrapper}`}>
           {blog.tags.map((tagName, idx) => {
             return (
               <li
@@ -49,10 +49,14 @@ const Blog = ({ blog }) => {
           })}
         </ul>
 
-        <div className="flex flex-1 flex-col">
-          <div className="flex items-center justify-between">
-            <Link href={`/about`} className="my-4 flex items-center">
-              <Avatar imageSrc="/images/site/me.jpg" width={40} height={40} />
+        <div className=" flex flex-1 flex-col">
+          <div className="mt-5 flex items-center justify-between">
+            <Link href={`/about`} className=" flex items-center">
+              <Avatar
+                imageSrc="/images/site/avatar.jpg"
+                width={40}
+                height={40}
+              />
               <span className="ml-4 text-2xl font-medium ">Tejas</span>
             </Link>
             <span className="ml-auto  text-caption">
@@ -60,14 +64,12 @@ const Blog = ({ blog }) => {
             </span>
           </div>
           <Link href={`/blogs/${blog.slug}`}>
-            <h2 className={`${classes.splitTwo} mb-2 text-3xl  leading-10`}>
+            <h2
+              className={`${classes.splitTwo} mb-3 mt-5 text-3xl  leading-10`}
+            >
               {blog.title}
             </h2>
-            <p
-              className={`${classes.splitTwo} mb-8 text-2xl text-white-200/[.8]`}
-            >
-              {blog.excerpt}
-            </p>
+            <Para className={`${classes.splitTwo} mb-10`}>{blog.excerpt}</Para>
           </Link>
           <div className="mb-5 mt-auto flex items-center justify-between ">
             <LikeIcon />

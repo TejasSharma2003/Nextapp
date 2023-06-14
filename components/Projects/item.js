@@ -1,18 +1,19 @@
-import React from "react";
-import * as classes from "./projects.module.css";
-import Image from "next/image";
+import React from 'react';
+import * as classes from './projects.module.css';
+import Image from 'next/image';
 
-import Button from "@/elements/Button";
+import Button from '@/elements/Button';
+import Para from '../Para';
 
 const Item = ({ project }) => {
   return (
-    <div className="mb-40 flex flex-col justify-between last:mb-0 md:flex-row md:items-center">
-      <div className=" py-10 pb-28 text-2xl md:pr-8">
+    <div className="mb-20 flex flex-col justify-between last:mb-0 md:flex-row md:items-center">
+      <div className="mt-28  pb-28 text-2xl md:pr-8">
         <span className="inline-block font-semibold uppercase tracking-[.32em] text-primary">
           Latest work
         </span>
         <h1 className="mb-8 mt-5 text-6xl font-semibold">{project.name}</h1>
-        
+
         <div className="my-4 flex flex-wrap items-center">
           {project.skills.map((skill, idx) => {
             return (
@@ -26,14 +27,12 @@ const Item = ({ project }) => {
           })}
         </div>
 
-        <p className="mb-16 max-w-[500px]  text-white-100">
-          {project.description}
-        </p>
+        <Para className="mb-16 max-w-[500px] leading-10">{project.description}</Para>
         <div className="flex">
-          <Button type="ghost" className="w-auto px-10 ">
+          <Button type="ghost" className='mr-10' >
             Github Repo
           </Button>
-          <Button type="fill" className="ml-8 w-auto px-10">
+          <Button type="fill">
             Watch Live
           </Button>
         </div>

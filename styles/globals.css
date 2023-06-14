@@ -1,6 +1,6 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import 'tailwindcss/base';
+@import 'tailwindcss/components';
+@import 'tailwindcss/utilities';
 
 @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700;800;900&family=Poppins:wght@400;500;600;700&display=swap');
 
@@ -15,8 +15,10 @@ html {
 
 body {
   font-family: 'Outfit', sans-serif;
-  background-color: #0C0A0A;
+  background-color: #0c0a0a;
   color: #fff;
+  -webkit-font-smoothing: antialiased;
+
 }
 
 #nprogress {
@@ -45,7 +47,7 @@ body {
   }
 }
 
-h1,
+/* h1,
 h3 {
   background: linear-gradient(
       91.44deg,
@@ -62,7 +64,7 @@ h3 {
   -webkit-text-fill-color: transparent;
   background-clip: text;
   text-fill-color: transparent;
-}
+} */
 
 input:-webkit-autofill,
 input:-webkit-autofill:hover,

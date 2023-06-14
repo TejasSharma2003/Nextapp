@@ -16,10 +16,10 @@ const MainContent = (props) => {
   return (
     <AnimatePresence
       mode="wait"
-      initial={props.page === '/' ? true : false}
+      initial={ false}
       onExitComplete={() => window.scrollTo(0, 0)}
     >
-      <motion.div
+      <motion.main
         key={props.page}
         initial="hidden"
         animate="enter"
@@ -30,7 +30,7 @@ const MainContent = (props) => {
         className={`${props.page === '/' || 'pt-52'} `}
       >
         {props.children}
-      </motion.div>
+      </motion.main>
     </AnimatePresence>
   );
 };

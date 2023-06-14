@@ -4,6 +4,8 @@ module.exports = {
     './pages/**/*.{js,ts,jsx,tsx,mdx}',
     './components/**/*.{js,ts,jsx,tsx,mdx}',
     './app/**/*.{js,ts,jsx,tsx,mdx}',
+    './elements/**/*.{js,ts,jsx,tsx,mdx}',
+    './ui/**/*.{js,ts,jsx,tsx,mdx}',
   ],
   theme: {
     extend: {
@@ -53,6 +55,7 @@ module.exports = {
       padding: {
         'pad-btn': '.8rem',
         'pad-x-to-screen': '1rem',
+        'pd-big': '5rem',
       },
       colors: {
         primary: '#FF602E',
@@ -61,6 +64,7 @@ module.exports = {
           100: '#111111',
           200: '#0D0B0B',
           300: '#090909',
+          400: '#0c0a0a',
         },
         white: {
           DEFAULT: '#fff',
@@ -83,5 +87,6 @@ module.exports = {
       },
     },
   },
+  safelist: [],
   plugins: [],
 };

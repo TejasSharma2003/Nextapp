@@ -1,5 +1,4 @@
 import React from "react";
-import * as classes from "./sectionHeading.module.css";
 import HightlightHeading from "@/ui/HightlightHeading";
 
 const SectionHeading = props => {

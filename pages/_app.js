@@ -8,6 +8,7 @@ import Layout from './../components/Layout';
 
 // This hook returns a function that you can call to remove unused styles when the 'out' phase of the transition is complete and the new page mounts.
 import { useNextCssRemovalPrevention } from '@madeinhaus/nextjs-page-transition';
+import Button from '@/elements/Button';
 
 export default function MyApp({ Component, pageProps }) {
   const { session } = pageProps;

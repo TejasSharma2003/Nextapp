@@ -5,6 +5,8 @@ import BlogContainer from '@/components/BlogContainer';
 
 import Container from '@/ui/Container';
 
+import Para from '@/components/Para';
+
 import { getAllBlogs, getAllTags } from '@/utils/blog-util';
 
 const BlogsPage = ({ blogs, tags }) => {
@@ -23,7 +25,7 @@ const BlogsPage = ({ blogs, tags }) => {
   let content;
   if (filteredBlogs.length === 0 && searchValue) {
     content = (
-      <div className="text-4xl text-center leading-snug">
+      <div className="text-center text-4xl leading-snug">
         Nothing here but Crickets.
       </div>
     );
@@ -37,10 +39,11 @@ const BlogsPage = ({ blogs, tags }) => {
     <Container>
       <div className="mx-auto max-w-large-w">
         <SectionHeading>blogs.</SectionHeading>
-        <p className="mt-5 text-2xl text-white-100">
+
+        <Para className="mt-10">
           This should be a paragraph which should eventually include something
           just to fill the gap.
-        </p>
+        </Para>
       </div>
       <FilterSection tags={tags} getBlogBySearch={getBlogBySearch} />
       <div className="relative min-h-[30vh]">{content}</div>

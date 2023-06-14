@@ -1,18 +1,18 @@
-import { useState } from "react";
-import * as classes from "./input.module.css";
+import { useState } from 'react';
+import * as classes from './input.module.css';
 
-import { RxEyeClosed, RxEyeOpen } from "react-icons/rx";
-import InputErrorMessage from "./InputErrorMessage";
+import { RxEyeClosed, RxEyeOpen } from 'react-icons/rx';
+import InputErrorMessage from './InputErrorMessage';
 
-const Input = props => {
+const Input = (props) => {
   const [showPassword, setShowPassword] = useState(false);
 
   const onTogglePassword = () => {
-    setShowPassword(pre => !pre);
+    setShowPassword((pre) => !pre);
   };
 
-  let content = "";
-  if (props.name === "password") {
+  let content = '';
+  if (props.name === 'password') {
     content = showPassword ? (
       <RxEyeOpen
         className="absolute right-5 z-30 cursor-pointer text-4xl  text-white/[.5]"
@@ -33,11 +33,11 @@ const Input = props => {
     <div
       tabIndex="0"
       className={`${
-        props.wrapperClassName || ""
-    } rounded-fulltransition-colors relative mb-7 flex items-center `}
+        props.wrapperClassName || ''
+      } rounded-fulltransition-colors relative mb-7 flex items-center `}
     >
       {props?.icon && (
-        <span className="absolute left-5 z-30 inline-block h-9 w-9 text-white-100">
+        <span className="absolute left-5 z-30 inline-block text-white-100">
           {<props.icon />}
         </span>
       )}
@@ -45,10 +45,10 @@ const Input = props => {
       <input
         className={`${classes.input} ${props.className} relative z-20 rounded-full  border-2  border-transparent bg-black-100 py-4 pl-[45px] pr-3 transition-colors placeholder:text-white-100 hover:border-2 hover:border-primary focus:border-primary`}
         type={
-          props.name === "password"
+          props.name === 'password'
             ? showPassword
-              ? "text"
-              : "password"
+              ? 'text'
+              : 'password'
             : props.type
         }
         name={props.name}

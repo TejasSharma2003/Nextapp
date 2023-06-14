@@ -8,7 +8,6 @@ import Auth from '../Auth';
 import { signOut, useSession } from 'next-auth/react';
 
 import Container from '@/ui/Container';
-import WriteIcon from '@/ui/WriteIcon';
 
 import { IoIosArrowDown } from 'react-icons/io';
 
@@ -83,12 +82,12 @@ const Navbar = () => {
         )}
       </AnimatePresence>
       <div
-        className={`fixed top-0 z-50 w-full  animate-fadeIn backdrop-blur transition-transform ${
+        className={`fixed top-0 z-50 w-full  backdrop-blur transition-transform ${
           !isNavbarVisible ? '-translate-y-full' : ''
         }`}
       >
         <Container className="relative">
-          <nav className={`flex items-center justify-between pt-10`}>
+          <nav className={`flex items-center justify-between py-6`}>
             <div className="md:w-3/12">
               <Logo />
             </div>
@@ -151,7 +150,7 @@ const Navbar = () => {
                 <div className="relative flex items-center">
                   <Button
                     type="ghost"
-                    className="mr-10  px-10 py-2 text-[1.7rem] sm:block"
+                    className="mr-10  sm:block"
                     onClick={onOpenModelHandler}
                   >
                     Login
@@ -160,7 +159,7 @@ const Navbar = () => {
                   {/* </Link> */}
                   <Button
                     type="fill"
-                    className="hidden px-12 py-2 text-[1.7rem] lg:block"
+                    className="hidden  lg:block"
                     onClick={onOpenModelHandler}
                   >
                     Signup

@@ -44,28 +44,23 @@ const modelContainerVariants = {
 const modelVariants = {
   hidden: {
     y: 50,
-    opacity: 0,
   },
   show: {
     y: 0,
-    opacity: 1,
+
     transition: {
       y: {
         ease: [0.42, 0.71, 0.09, 0.86],
         duration: 0.3,
       },
-      opacity: {
-        ease: [0.42, 0.71, 0.09, 0.86],
-        duration: 0.2,
-      },
     },
   },
   exit: {
     y: 100,
-    opacity: 0,
+
     transition: {
       ease: [0.42, 0.71, 0.09, 0.86],
-      duration: 0.2,
+      duration: 0.3,
     },
   },
 };
@@ -219,174 +214,161 @@ const Auth = (props) => {
   };
 
   return (
-    <>
-      {/* backdrop */}
-      {/* <motion.div
-        key="backdrop"
-        variants={modelContainerVariants}
-        initial="hidden"
-        animate="show"
-        exit="exit"
-        className="fixed top-0  z-[100] flex min-h-screen w-screen justify-center bg-black/[.8] py-5 transition-colors"
-      ></motion.div> */}
-
-      {/* modal wrapper */}
-      {/* <motion.div
+    <motion.div
+      initial={{ background: 'transparent', opacity: 0 }}
+      animate={{ background: 'rgba(0 0 0 / 0.7)', opacity: 1 }}
+      exit={{ backdropFilter: 'transparent', opacity: 0 }}
+      transition={{
+        duration: 0.2,
+      }}
+      key="model"
+      className={`fixed inset-x-0 inset-y-0 z-[100] flex items-center justify-center pt-10   ${
+        props.modelIsVisible ? 'animate-show_scroll_y' : ''
+      }`}
+      onClick={props.onCloseModelHandler}
+    >
+      <motion.div
         variants={modelVariants}
         initial="hidden"
         animate="show"
         key="model"
         exit="exit"
-        className="fixed inset-x-0 inset-y-0 z-[110] "
-      > */}
-      <div
-        className={`fixed inset-x-0 inset-y-0 z-[100] flex items-center justify-center  pt-10 ${
-          props.modelIsVisible ? 'animate-show_scroll_y' : ''
-        }`}
+        onClick={(e) => e.stopPropagation()}
+        className={`relative mb-auto mt-auto flex min-h-screen  flex-1  justify-center rounded-2xl  bg-black-200 py-32 text-center text-white sm:max-w-5xl ${
+          classes.container
+        } ${props.modelIsVisible ? classes['animate-line'] : ''}`}
       >
-        <motion.div
-          variants={modelVariants}
-          initial="hidden"
-          animate="show"
-          key="model"
-          exit="exit"
-          className={` relative mt-auto mb-auto flex flex-1  justify-center  rounded-2xl bg-black-300  py-32 text-center text-white min-h-screen md:max-w-5xl ${
-            classes.container
-          } ${props.modelIsVisible ? classes['animate-line'] : ''}`}
-        >
-          <CrossButton
-            className="!absolute !right-5 !top-5"
-            onClick={props.onCloseModelHandler}
-          />
+        <CrossButton
+          className="!absolute !right-5 !top-5"
+          onClick={props.onCloseModelHandler}
+        />
 
-          <div className="max-w-3xl flex-1 px-16 flex flex-col justify-center">
-            <h1 className="mb-20 font-primary  text-6xl  leading-snug">
-              {isLoginMounted ? (
-                <span>
-                  Don&apos;t miss a beat.
-                  <br /> Login now...
-                </span>
-              ) : (
-                <span>
-                  Ready to get started? <br /> Sign up now!
-                </span>
-              )}
-            </h1>
+        <div className="flex max-w-3xl flex-1 flex-col  px-16">
+          <h1 className="mb-20 font-primary  text-5xl  !leading-[1.3]  sm:text-6xl">
+            {isLoginMounted ? (
+              <span>
+                Don&apos;t miss a beat.
+                <br /> Login now...
+              </span>
+            ) : (
+              <span>
+                Ready to get started? <br /> Sign up now!
+              </span>
+            )}
+          </h1>
 
-            <form onSubmit={onSubmitHandler}>
-              {/* Name */}
-              {!isLoginMounted && (
-                <Input
-                  type="text"
-                  placeholder="Name"
-                  icon={UserIcon}
-                  name="name"
-                  value={name}
-                  onChange={onChangeNameInput}
-                  onBlur={onBlurNameInput}
-                  nameIsInvalid={nameIsInvalid}
-                />
-              )}
-              {/* Email */}
-
+          <form onSubmit={onSubmitHandler}>
+            {/* Name */}
+            {!isLoginMounted && (
               <Input
-                type="email"
-                placeholder="Email"
-                icon={EmailIcon}
-                name="email"
-                value={email}
-                onChange={onChangeEmailInput}
-                onBlur={onBlurEmailInput}
-                emailIsInvalid={emailIsInvalid}
+                type="text"
+                placeholder="Name"
+                icon={UserIcon}
+                name="name"
+                value={name}
+                onChange={onChangeNameInput}
+                onBlur={onBlurNameInput}
+                nameIsInvalid={nameIsInvalid}
               />
+            )}
+            {/* Email */}
 
-              {/* Password */}
-              <Input
-                type="password"
-                placeholder="Password"
-                icon={PasswordIcon}
-                name="password"
-                value={password}
-                onChange={onChangePasswordInput}
-                onBlur={onBlurPasswordInput}
-                passwordIsInvalid={passwordIsInvalid}
-              />
+            <Input
+              type="email"
+              placeholder="Email"
+              icon={EmailIcon}
+              name="email"
+              value={email}
+              onChange={onChangeEmailInput}
+              onBlur={onBlurEmailInput}
+              emailIsInvalid={emailIsInvalid}
+            />
 
-              <Button
-                type="fill"
-                className="relative mb-7 flex w-full items-center justify-center disabled:bg-primary/[.8]"
-                onClick={null}
-                disabled={showSpinner || !loginFormIsValid}
-              >
-                <AnimatePresence>
-                  {showSpinner && (
-                    <motion.span
-                      key="spinner"
-                      initial={{ opacity: 0 }}
-                      animate={{ opacity: 1 }}
-                      exit={{ opacity: 0 }}
-                      className="absolute left-2/4 -translate-x-[60px]"
-                    >
-                      <SmallSpinner />
-                    </motion.span>
-                  )}
-                </AnimatePresence>
-                Continue
-              </Button>
-            </form>
-
-            <span className={`${classes.divider} text-white/[.5]`}>OR</span>
+            {/* Password */}
+            <Input
+              type="password"
+              placeholder="Password"
+              icon={PasswordIcon}
+              name="password"
+              value={password}
+              onChange={onChangePasswordInput}
+              onBlur={onBlurPasswordInput}
+              passwordIsInvalid={passwordIsInvalid}
+            />
 
             <Button
-              className="my-7 flex w-full items-center justify-center bg-black-100"
-              onClick={onSignInWithGoogle}
+              type="fill"
+              className="relative mb-7 flex w-full items-center justify-center disabled:bg-primary/[.8]"
+              onClick={null}
+              disabled={showSpinner || !loginFormIsValid}
             >
-              <FcGoogle className="mr-5 inline-block text-4xl" />
-              <span className="mr-2">
-                {isLoginMounted ? 'Login' : 'Signup'}
-              </span>{' '}
-              with Google
-            </Button>
-
-            <Button
-              className="mb-10 flex w-full items-center  justify-center bg-black-100"
-              onClick={onSignInWithGithub}
-            >
-              <BsGithub className="mr-5 inline-block text-4xl" />
-              <span className="mr-2">
-                {isLoginMounted ? 'Login' : 'Signup'}
-              </span>{' '}
-              with Github
-            </Button>
-
-            <div>
-              {isLoginMounted ? (
-                <span className="text-2xl">
-                  Don&lsquo;t have a account?
-                  <span
-                    onClick={onChangeAuthMethod}
-                    className="ml-1 cursor-pointer text-blue-500"
+              <AnimatePresence>
+                {showSpinner && (
+                  <motion.span
+                    key="spinner"
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    exit={{ opacity: 0 }}
+                    className="absolute left-2/4 -translate-x-[60px]"
                   >
-                    Signup
-                  </span>
+                    <SmallSpinner />
+                  </motion.span>
+                )}
+              </AnimatePresence>
+              Continue
+            </Button>
+          </form>
+
+          <span className={`${classes.divider} text-white/[.5]`}>OR</span>
+
+          <Button
+            className="my-7 flex w-full items-center justify-center bg-black-100"
+            onClick={onSignInWithGoogle}
+          >
+            <FcGoogle className="mr-5 inline-block text-4xl" />
+            <span className="mr-2">
+              {isLoginMounted ? 'Login' : 'Signup'}
+            </span>{' '}
+            with Google
+          </Button>
+
+          <Button
+            className="mb-10 flex w-full items-center  justify-center bg-black-100"
+            onClick={onSignInWithGithub}
+          >
+            <BsGithub className="mr-5 inline-block text-4xl" />
+            <span className="mr-2">
+              {isLoginMounted ? 'Login' : 'Signup'}
+            </span>{' '}
+            with Github
+          </Button>
+
+          <div>
+            {isLoginMounted ? (
+              <span className="text-2xl">
+                Don&lsquo;t have a account?
+                <span
+                  onClick={onChangeAuthMethod}
+                  className="ml-1 cursor-pointer text-blue-500"
+                >
+                  Signup
                 </span>
-              ) : (
-                <span className="text-2xl">
-                  Already have an account?
-                  <span
-                    onClick={onChangeAuthMethod}
-                    className="ml-1 cursor-pointer text-blue-500"
-                  >
-                    Login
-                  </span>
+              </span>
+            ) : (
+              <span className="text-2xl">
+                Already have an account?
+                <span
+                  onClick={onChangeAuthMethod}
+                  className="ml-1 cursor-pointer text-blue-500"
+                >
+                  Login
                 </span>
-              )}
-            </div>
+              </span>
+            )}
           </div>
-        </motion.div>
-      </div>
-      {/* </motion.div> */}
-    </>
+        </div>
+      </motion.div>
+    </motion.div>
   );
 };
 

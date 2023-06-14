@@ -1,11 +1,11 @@
-import { useEffect, useState } from "react";
-import { createRoot, hydrateRoot } from "react-dom/client";
-import * as classes from "./alert.module.css";
-import ReactDOM from "react-dom";
-import { AnimatePresence, motion } from "framer-motion";
-import CrossButton from "@/elements/CrossButton";
+import { useEffect, useState } from 'react';
+import { createRoot, hydrateRoot } from 'react-dom/client';
+import * as classes from './alert.module.css';
+import ReactDOM from 'react-dom';
+import { AnimatePresence, motion } from 'framer-motion';
+import CrossButton from '@/elements/CrossButton';
 
-const alertVariants = {
+const alertVariants = { 
   show: {
     opacity: 1,
     y: -15,
@@ -46,13 +46,13 @@ const Alert = ({ status, message, root }) => {
   }, [root]);
 
   const tailWindColorClass =
-    status === "success"
-      ? "bg-[#61E868]"
-      : status === "error"
-      ? "bg-[rgb(223,46,56)]"
-      : status === "pending"
-      ? "bg-black-100"
-      : "";
+    status === 'success'
+      ? 'bg-[#61E868]'
+      : status === 'error'
+      ? 'bg-[rgb(223,46,56)]'
+      : status === 'pending'
+      ? 'bg-black-100'
+      : '';
 
   return (
     <AnimatePresence>
@@ -65,7 +65,7 @@ const Alert = ({ status, message, root }) => {
           animate="show"
           exit="hide"
           transition={{
-            type: "spring",
+            type: 'spring',
             stiffness: 270,
             damping: 20,
           }}
@@ -86,7 +86,7 @@ const Alert = ({ status, message, root }) => {
 
 function showAlert(props) {
   // if alert already exit then do nothing
-  const alertDom = document.getElementById("alert-container");
+  const alertDom = document.getElementById('alert-container');
 
   if (alertDom.hasChildNodes()) return;
 

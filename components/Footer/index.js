@@ -31,7 +31,7 @@ const Footer = () => {
       <div className=" mx-auto grid max-w-large-w gap-x-20 gap-y-20 sm:grid-cols-2 sm:gap-x-10 md:grid-cols-4 ">
         <div className="flex flex-col items-start">
           <Logo />
-          <span className="mt-auto max-w-sm text-lg text-white-100">
+          <span className="mt-10 max-w-sm text-lg text-white-100 sm:mt-auto">
             Copyright @ 2023 by Blog, Inc. All rights reserved.
           </span>
         </div>
@@ -40,7 +40,7 @@ const Footer = () => {
           <h3 className="mb-10 text-[1.4rem] font-semibold uppercase tracking-wide text-white-100">
             About
           </h3>
-          <p className="text-2xl leading-9 text-white">
+          <p className="max-w-2xl text-2xl leading-9 text-white sm:max-w-full">
             Tejas Sharma is a skilled web developer with over 5 years of
             experience in the industry. He specializes in front-end development,
             with expertise in HTML, CSS, and JavaScript.
@@ -74,15 +74,14 @@ const Footer = () => {
           <h3 className="mb-10 text-[1.5rem] font-semibold uppercase tracking-wide text-white-100">
             News letter
           </h3>
-          <div className="flex max-w-lg items-center rounded-full bg-black-100">
+          <div className=" max-w-2xl sm:max-w-full">
             <Input
               type="email"
               placeholder="Your Email"
               name="email"
-              className="h-full w-full bg-transparent !pl-8"
-              wrapperClassName="!mb-0 border-0 !bg-transparent w-full"
+              className="!px-6"
             />
-            <Button className="!w-auto bg-primary px-6 text-white">
+            <Button type="fill" className="w-full">
               Subscribe
             </Button>
           </div>
