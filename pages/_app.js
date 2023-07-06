@@ -1,14 +1,13 @@
 import '@/styles/globals.css';
 
-import Router from 'next/router';
 import { SessionProvider } from 'next-auth/react';
-import { useRouter } from 'next/router';
 import NextNProgress from 'nextjs-progressbar';
 import Layout from './../components/Layout';
 
 // This hook returns a function that you can call to remove unused styles when the 'out' phase of the transition is complete and the new page mounts.
 import { useNextCssRemovalPrevention } from '@madeinhaus/nextjs-page-transition';
-import Button from '@/elements/Button';
+import Banner from '@/ui/Banner';
+import Context from '@/context/context';
 
 export default function MyApp({ Component, pageProps }) {
   const { session } = pageProps;
@@ -19,7 +18,6 @@ export default function MyApp({ Component, pageProps }) {
     <>
       <div id="model"></div>
       <div id="mobile_nav"></div>
-
       <SessionProvider session={session}>
         {/* progressbar */}
         <NextNProgress
@@ -27,9 +25,11 @@ export default function MyApp({ Component, pageProps }) {
           options={{ easing: 'ease', speed: 300 }}
         />
 
-        <Layout>
-          <Component {...pageProps} />
-        </Layout>
+        <Context>
+          <Layout>
+            <Component {...pageProps} />
+          </Layout>
+        </Context>
       </SessionProvider>
       <div
         id="alert-container"

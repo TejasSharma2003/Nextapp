@@ -24,7 +24,7 @@ const Navbar = () => {
       </AnimatePresence>
 
       <div
-        className={`absolute right-0 h-20 w-20 rounded-full bg-black-100 transition-transform duration-700  ease-fade-up lg:hidden ${
+        className={`fixed right-[12px]  z-20 h-20 w-20 rounded-full bg-black-100 transition-transform  duration-500  lg:hidden ${
           menuActive ? 'scale-[50]' : ''
         } `}
       ></div>

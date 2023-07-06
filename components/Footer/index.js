@@ -31,8 +31,8 @@ const Footer = () => {
       <div className=" mx-auto grid max-w-large-w gap-x-20 gap-y-20 sm:grid-cols-2 sm:gap-x-10 md:grid-cols-4 ">
         <div className="flex flex-col items-start">
           <Logo />
-          <span className="mt-10 max-w-sm text-lg text-white-100 sm:mt-auto">
-            Copyright @ 2023 by Blog, Inc. All rights reserved.
+          <span className="mt-10 max-w-sm text-[1.2rem] text-white-100 sm:mt-auto">
+            Design and Develop by Tejas Sharma 2023
           </span>
         </div>
 

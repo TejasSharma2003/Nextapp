@@ -4,7 +4,7 @@ import HightlightHeading from "@/ui/HightlightHeading";
 const SectionHeading = props => {
   return (
     <h2
-      className={`text-left font-primary text-7xl font-extrabold capitalize ${
+      className={`text-left font-primary text-6xl font-extrabold capitalize ${
         props.className || ""
       }`}
     >

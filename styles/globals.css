@@ -18,7 +18,6 @@ body {
   background-color: #0c0a0a;
   color: #fff;
   -webkit-font-smoothing: antialiased;
-
 }
 
 #nprogress {
@@ -26,9 +25,9 @@ body {
   z-index: 555;
 }
 
-/* body::-webkit-scrollbar {
+body::-webkit-scrollbar {
   width: 0em;
-} */
+}
 
 @media (hover: hover) {
   ::-webkit-scrollbar {

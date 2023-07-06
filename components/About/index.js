@@ -24,7 +24,7 @@ const About = () => {
       <SectionHeading>About.</SectionHeading>
       <div className="mb-40 flex flex-col justify-between md:flex-row ">
         <div className="md:max-w-4xl">
-          <Para className="mt-28 pr-10 leading-10">
+          <Para className="mt-16 pr-10 leading-10 md:mt-28">
             Tejas Sharma is a highly skilled full stack web developer with
             extensive experience in building robust web applications. With a
             Bachelor&apos;s degree in Computer Science and Engineering, Tejas
@@ -37,15 +37,18 @@ const About = () => {
           <div className="mt-5 grid grid-cols-3  grid-rows-2 gap-y-2">
             {techs.map((tech, idx) => {
               return (
-                <span key={idx} className="flex text-2xl text-white/[.7] items-center">
-                  <BsDot className='w-10 h-10' />
+                <span
+                  key={idx}
+                  className="flex items-center text-2xl text-white/[.7]"
+                >
+                  <BsDot className="h-10 w-10" />
                   {tech}
                 </span>
               );
             })}
           </div>
         </div>
-        <div className="relative self-center">
+        <div className="relative mt-32 self-center md:mt-0">
           <div
             className={`relative  overflow-hidden rounded-3xl ${classes.me}`}
           >
@@ -62,12 +65,12 @@ const About = () => {
         </div>
       </div>
       <SectionHeading>What I do.</SectionHeading>
-      <div className="mt-28 flex  flex-col gap-x-16 sm:grid  sm:grid-cols-2 lg:grid-cols-4">
+      <div className="mt-16 flex flex-col  gap-x-16  sm:grid sm:grid-cols-2 md:mt-28 lg:grid-cols-4">
         {works.map((work, id) => {
           return (
             <div
               key={id}
-              className={`animate-card relative mb-20 flex flex-col items-center rounded-3xl bg-black-100  px-5 py-12`}
+              className={` animate-card relative mb-20 flex  flex-col items-center rounded-3xl bg-black-100  px-5 py-12 `}
             >
               <Image
                 src={work.image}

@@ -1,7 +1,10 @@
-import Logo from "@/components/Logo";
-import * as classes from "./banner.module.css";
-import { motion, transform } from "framer-motion";
-import React from "react";
+import Logo from '@/components/Logo';
+import * as classes from './banner.module.css';
+import { motion, transform } from 'framer-motion';
+import React from 'react';
+import { useContext } from 'react';
+
+import { LoadingStateContext } from '@/context/context';
 
 const bannerVariants = {
   hide: {
@@ -16,7 +19,8 @@ const bannerVariants = {
   exit: {
     opacity: 0,
     transition: {
-      duration: 1,
+      duration: 0.5,
+      ease: [0.87, 0, 0.13, 1],
     },
   },
 };
@@ -39,15 +43,16 @@ const logoVariants = {
   },
   exit: {
     opacity: 0,
-    y: -50,
     transition: {
-      duration: 0.8,
+      duration: 0.2,
+
       ease: [0.42, 0.71, 0.09, 0.86],
     },
   },
 };
 
-const Banner = props => {
+const Banner = (props) => {
+  const { setIsLoaderOut } = useContext(LoadingStateContext);
   return (
     <motion.div
       key="banner"
@@ -55,7 +60,12 @@ const Banner = props => {
       initial="hide"
       animate="show"
       exit="exit"
-      onAnimationComplete={() => props.setShowBanner(false)}
+      onAnimationComplete={() => {
+        setTimeout(() => {
+          setIsLoaderOut(true);
+        }, 400);
+        props.setShowBanner(false);
+      }}
       className={classes.overlay}
     >
       <motion.div

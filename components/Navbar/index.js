@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useContext } from 'react';
 import { createPortal } from 'react-dom';
 import * as classes from './navbar.module.css';
 import { useRouter } from 'next/router';
@@ -22,15 +22,24 @@ import Dropdown from './Dropdown';
 import { AnimatePresence } from 'framer-motion';
 import showAlert from '../AlertContainer';
 import MobileNav from '../MobileNav';
+import Image from 'next/image';
+
+import { motion } from 'framer-motion';
+import { LoadingStateContext } from '@/context/context';
 
 const Navbar = () => {
   const [modelIsVisible, setModelIsVisile] = useState(false);
   const [showDropdown, setShowDropdown] = useState(false);
   const [modelFor, setModelFor] = useState('');
-  const [isNavbarVisible, setIsNavbarVisible] = useState(true);
-  const [preScrollPosition, setPreScrollPosition] = useState(0);
+  const { isLoaderOut } = useContext(LoadingStateContext);
 
   const { data: session, status } = useSession();
+
+  let isTopPage = true;
+
+  if (typeof window !== 'undefined') {
+    isTopPage = document.body.scrollTop === 0;
+  }
 
   const router = useRouter();
   const pagePath = router.asPath;
@@ -58,18 +67,6 @@ const Navbar = () => {
     setModelIsVisile(false);
   };
 
-  useEffect(() => {
-    const handleScroll = () => {
-      const currentPosition = window.scrollY;
-      setIsNavbarVisible(preScrollPosition > currentPosition);
-      setPreScrollPosition(currentPosition);
-    };
-
-    window.addEventListener('scroll', handleScroll);
-
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, [preScrollPosition]);
-
   return (
     <>
       <AnimatePresence>
@@ -81,15 +78,23 @@ const Navbar = () => {
           />
         )}
       </AnimatePresence>
-      <div
-        className={`fixed top-0 z-50 w-full  backdrop-blur transition-transform ${
-          !isNavbarVisible ? '-translate-y-full' : ''
-        }`}
+      <motion.div
+        initial={{ opacity: 0, y: -100 }}
+        animate={isLoaderOut ? { opacity: 1, y: 0 } : {}}
+        transition={{
+          duration: 0.5,
+          ease: 'easeInOut',
+        }}
       >
         <Container className="relative">
           <nav className={`flex items-center justify-between py-6`}>
-            <div className="md:w-3/12">
+            <div className="hidden sm:block md:w-3/12">
               <Logo />
+            </div>
+            <div>
+              <h1 className="block font-primary text-5xl font-bold text-primary sm:hidden">
+                <Image src="/images/site/ts.svg" width={40} height={30} />
+              </h1>
             </div>
 
             {/* profile options */}
@@ -170,7 +175,7 @@ const Navbar = () => {
             </div>
           </nav>
         </Container>
-      </div>
+      </motion.div>
     </>
   );
 };

@@ -8,6 +8,16 @@ module.exports = {
     './ui/**/*.{js,ts,jsx,tsx,mdx}',
   ],
   theme: {
+    fontSize: {
+      sm: '0.8rem',
+      base: '1rem',
+      xl: '1.25rem',
+      '2xl': '1.563rem',
+      '3xl': '1.953rem',
+      '4xl': '2.441rem',
+      '5xl': '3.5rem',
+      '6xl': '4.6rem',
+    },
     extend: {
       transitionTimingFunction: {
         'fade-up': 'cubic-bezier(0.42, 0.71, 0.09, 0.86)',
@@ -84,6 +94,10 @@ module.exports = {
       },
       fontSize: {
         caption: '1.3rem',
+      },
+      screens: {
+        smallDevice: { raw: '(max-height: 600px)' },
+        // => @media (min-height: 800px) { ... }
       },
     },
   },

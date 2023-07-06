@@ -244,7 +244,7 @@ const Auth = (props) => {
         />
 
         <div className="flex max-w-3xl flex-1 flex-col  px-16">
-          <h1 className="mb-20 font-primary  text-5xl  !leading-[1.3]  sm:text-6xl">
+          <h1 className="mb-20 font-primary  text-5xl  !leading-[1.3]  ">
             {isLoginMounted ? (
               <span>
                 Don&apos;t miss a beat.

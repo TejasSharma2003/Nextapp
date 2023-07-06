@@ -44,7 +44,7 @@ const NavLinks = (props) => {
         initial="hidden"
         animate="show"
         exit="exit"
-        className={`${styles.links} text-center   text-5xl text-primary sm:text-6xl `}
+        className={`${styles.links} text-center  text-5xl text-primary `}
       >
         {links.map((link, idx) => {
           return (

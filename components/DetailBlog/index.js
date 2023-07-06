@@ -16,12 +16,12 @@ const DetailBlog = ({ blog }) => {
   return (
     <div>
       <div className="mx-auto max-w-7xl px-5">
-        <h1 className="mx-auto max-w-[70rem] py-16 text-center font-primary text-6xl font-bold !leading-[1.3]">
+        <h1 className="mx-auto max-w-[70rem] mb-16 text-center font-primary text-5xl sm:text-6xl font-bold !leading-[1.3]">
           {blog.title}
         </h1>
         <div className="flex items-center justify-between text-[1.3rem] text-white-100">
           <div className="flex items-center ">
-            <Avatar width={45} height={45} />
+            <Avatar width={40} height={40} />
             <div className="ml-5 flex flex-col ">
               <span className="text-white">{blog.author}</span>
               <span className="inline-block">{formatDate(blog.date)}</span>

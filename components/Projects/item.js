@@ -7,12 +7,12 @@ import Para from '../Para';
 
 const Item = ({ project }) => {
   return (
-    <div className="mb-20 flex flex-col justify-between last:mb-0 md:flex-row md:items-center">
-      <div className="mt-28  pb-28 text-2xl md:pr-8">
+    <div className=" mb-28  flex flex-col justify-between last:mb-0 md:flex-row md:items-center">
+      <div className="mt-16 pb-28  text-2xl md:mt-28 md:pr-8">
         <span className="inline-block font-semibold uppercase tracking-[.32em] text-primary">
           Latest work
         </span>
-        <h1 className="mb-8 mt-5 text-6xl font-semibold">{project.name}</h1>
+        <h1 className="mb-8 mt-5 text-5xl font-semibold">{project.name}</h1>
 
         <div className="my-4 flex flex-wrap items-center">
           {project.skills.map((skill, idx) => {
@@ -27,14 +27,14 @@ const Item = ({ project }) => {
           })}
         </div>
 
-        <Para className="mb-16 max-w-[500px] leading-10">{project.description}</Para>
+        <Para className="mb-16 max-w-[500px] leading-10">
+          {project.description}
+        </Para>
         <div className="flex">
-          <Button type="ghost" className='mr-10' >
+          <Button type="ghost" className="mr-10">
             Github Repo
           </Button>
-          <Button type="fill">
-            Watch Live
-          </Button>
+          <Button type="fill">Watch Live</Button>
         </div>
       </div>
       <div className="relative self-center ">
